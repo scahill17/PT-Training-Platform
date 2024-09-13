@@ -1,39 +1,20 @@
 // src/pages/AthletesPage.js
 import React, { useState, useEffect } from 'react';
+import { fetchClients } from '../api/api';
 import ClientCard from '../components//AthletesPage/ClientCard';
 
 const AthletesPage = () => {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    // Simulating client data
-    setClients([
-      {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@example.com',
-        age: 30,
-        goals: 'Build muscle',
-        medicalConditions: 'None'
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@example.com',
-        age: 30,
-        goals: 'Build muscle',
-        medicalConditions: 'None'
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@example.com',
-        age: 30,
-        goals: 'Build muscle',
-        medicalConditions: 'None'
-      },
-      // Add more client objects
-    ]);
+    const getClients = async () => {
+      const data = await fetchClients();
+      if (data) {
+        setClients(data);
+      }
+    };
+
+    getClients();
   }, []);
 
   return (
