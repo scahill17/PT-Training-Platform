@@ -1,29 +1,33 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Global/Header';
-import SideNav from './components/Global/SideNav';
+import NavBar from './components/Global/NavBar';
+import SideBar from './components/Global/SideBar';
 import HomePage from './pages/HomePage';
 import AthletesPage from './pages/AthletesPage';
+import ChatPage from './pages/ChatPage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import AccountPage from './pages/AccountPage';
+import LoginPage from './pages/LoginPage';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="app-layout">
-        <Header />
-        <div className="main-content">
-          <SideNav />
+        <SideBar />
+        <NavBar />
           <div className="page-content">
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/athletes" element={<AthletesPage />} />
-              <Route path="/analytics" element={<AnalyticsPage />} />
-            </Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/athletes" element={<AthletesPage />} />
+                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/analytics" element={<AnalyticsPage />} />
+                <Route path="/account" element={<AccountPage />} />
+                <Route path="/login" element={<LoginPage />} />
+              </Routes>
           </div>
         </div>
-      </div>
     </Router>
   );
 }
