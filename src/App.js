@@ -5,6 +5,7 @@ import NavBar from './components/Global/NavBar';
 import SideBar from './components/Global/SideBar';
 import HomePage from './pages/HomePage';
 import AthletesPage from './pages/AthletesPage';
+// import Athletes from './pages/Athletes';
 import ChatPage from './pages/ChatPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import AccountPage from './pages/AccountPage';

@@ -1,32 +1,76 @@
-// src/pages/AthletesPage.js
 import React, { useState, useEffect } from 'react';
-import { fetchClients } from '../api/api';
-import ClientCard from '../components//AthletesPage/ClientCard';
+import { fetchAthletes } from '../api/api';
+import AthleteCard from '../components/AthletesPage/AthleteCard';
+import AthleteForm from '../components/AthletesPage/AthleteForm';
+import '../styles/AthletesPage.css'
 
-const AthletesPage = () => {
-  const [clients, setClients] = useState([]);
+const Athletes = () => {
+  const [athletes, setAthletes] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredAthletes, setFilteredAthletes] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  
 
   useEffect(() => {
-    const getClients = async () => {
-      const data = await fetchClients();
-      if (data) {
-        setClients(data);
-      }
-    };
+    // Fetch the athletes when the component mounts
+    const getAthletes = async () => {
+      const data = await fetchAthletes();  // Use the API call to fetch athletes
+      setAthletes(data);  // Set the athletes from the response
+    };    
 
-    getClients();
+    getAthletes();
   }, []);
+
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    
+    // Filter athletes based on the search query
+    const filtered = athletes.filter((athlete) => 
+      athlete.name.toLowerCase().includes(query)
+    );
+    setFilteredAthletes(filtered);
+  };
+
+  const refreshAthletes = async () => {
+    const data = await fetchAthletes();
+    setAthletes(data);
+  };
 
   return (
     <div className="athletes-page">
-      <h1>Athletes</h1>
-      <div className="client-list">
-        {clients.map((client) => (
-          <ClientCard key={client.id} client={client} />
+      <div className="athletes-header">
+        <input
+          type="text"
+          placeholder="Search athletes by name"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="search-input"
+        />
+        <button className="add-athlete-button" onClick={() => setShowForm(true)}>
+          Add Athlete
+        </button>
+      </div>
+
+      {/* Show Add Athlete Form as Modal */}
+      {showForm && (
+        <AthleteForm
+          onSuccess={() => {
+            setShowForm(false);
+            refreshAthletes();  // Refresh the list of athletes after successful submission
+          }}
+          onCancel={() => setShowForm(false)}  // Hide the form if cancelled
+        />
+      )}
+
+      <div className="athletes-grid">
+        {(filteredAthletes.length > 0 ? filteredAthletes : athletes)?.map(athlete => (
+          <AthleteCard key={athlete.athlete_id} athlete={athlete} />
         ))}
       </div>
     </div>
   );
 };
 
-export default AthletesPage;
+export default Athletes;
