@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import UserProfile from '../../assets/User Profile.png';
 import DownArrow from '../../assets/Down Arrow.png';
 // import AccountIcon from '../../assets/Account Icon.png';
@@ -7,7 +7,25 @@ import LogoutIcon from '../../assets/Logout Icon.png';
 import '../../styles/NavBar.css'; // Updated CSS
 
 const NavBar = () => {
+  const location = useLocation();
   const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const getWelcomeMessage = () => {
+    switch (location.pathname) {
+      case '/':
+        return 'Welcome back, Coach';
+      case '/athletes':
+        return 'My Athletes';
+      case '/analytics':
+        return 'Analytics';
+      case '/chat':
+        return 'Messaging';
+      case '/account':
+        return 'Account';
+      default:
+        return 'Welcome back, Coach'; // Default message
+    }
+  };
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -19,7 +37,7 @@ const NavBar = () => {
 
       {/* Welcome Text */}
       <div className="navbar-text">
-        Welcome back, Coach
+        {getWelcomeMessage()}
       </div>
 
       {/* Profile & Dropdown */}
