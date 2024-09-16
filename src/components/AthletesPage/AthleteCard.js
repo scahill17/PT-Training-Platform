@@ -42,13 +42,13 @@ const AthleteCard = ({ athlete }) => {
           src={AnalyticsIcon}
           alt="Analytics"
           className="action-icon"
-          onClick={() => navigate(`/athlete/${athlete.athlete_id}/analytics`)}
+          onClick={() => navigate(`/analytics/${athlete.athlete_id}`)}
         />
         <img
           src={ChatIcon}
           alt="Chat"
           className="action-icon"
-          onClick={() => navigate(`/athlete/${athlete.athlete_id}/chat`)}
+          onClick={() => navigate(`/chat/${athlete.athlete_id}`)}
         />
       </div>
     </div>

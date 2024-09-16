@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for the calendar */
+  grid-auto-rows: minmax(100px, auto); /* Flexible height for each row */
+  grid-gap: 0px;
+  border-bottom: 1px solid #dddddd;
+  padding-left: 20px;
+}
+
+.calendar-day {
+  display: flex;
+  justify-content: flex-start; /* Left-align the content */
+  align-items: flex-start; /* Align content to the top */
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #333333;
+  border-top: 1px solid #dddddd; /* Horizontal line between rows */
+  transition: background-color 0.3s ease; /* Smooth transition for hover feedback */
+  position: relative;
+  height: 100px;
+}
+
+.calendar-day:hover {
+  background-color: #e6e6e6; /* Slightly darker shade for hover feedback */
+}
+
+.calendar-day.empty {
+  background-color: #f9f9f9; /* Empty days should be blank */
+}
+
+.calendar-day.trailing {
+  color: #aaaaaa; /* Light grey for days of previous/next month */
+}
+
+.calendar-day .date-number {
+  font-size: 14px;
+  text-align: left;
+}
+
+.edit-session-button {
+  position: relative;
+  background-color: #F2AE30;
+  color: white;
+  border: none;
+  padding: 12px 16px; /* Make the button bigger */
+  font-size: 14px; /* Bigger font size */
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 5px;
+  text-align: center;
+  display: none; /* Initially hidden */
+}
+
+.edit-session-button:hover {
+  background-color: #d99427; /* Darker shade on hover */
+}
+
+.calendar-day:hover .edit-session-button {
+  display: block; /* Show the button only when the day is hovered */
+  margin-top: 10px; /* Add space between the date and the button */
+  align-self: center; /* Center the button horizontally */
+}

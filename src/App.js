@@ -26,7 +26,7 @@ function App() {
                 <Route path="/analytics" element={<AnalyticsPage />} />
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/athlete/:id/calendar" element={<CalendarPage />} />
+                <Route path="/athlete/:athleteId/calendar" element={<CalendarPage />} />
               </Routes>
           </div>
         </div>
