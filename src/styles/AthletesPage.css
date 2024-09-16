@@ -20,16 +20,20 @@
   }
   
   .add-athlete-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 12px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background-color: #F2AE30; /* Same warm color as Today button */
     border: none;
     border-radius: 5px;
+    color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
   }
   
   .add-athlete-button:hover {
-    background-color: #45a049;
+    background-color: #d49b29; /* Darker shade for hover */
   }
   
   .athletes-grid {

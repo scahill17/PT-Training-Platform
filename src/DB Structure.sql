@@ -9,7 +9,7 @@ CREATE TABLE api.users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE api.clients (
+CREATE TABLE api.athletes (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES api.users(id) ON DELETE CASCADE,
     age INT CHECK (age >= 0),

@@ -3,7 +3,7 @@ const API_URL = 'https://comp2140-f3bc926d.uqcloud.net/api/'; // Your PostgREST 
 // JWT Token
 const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCJ9.u_Tlz90goXHbi8Zn_zPvrZbugXL02U_6odPUwp1xSyQ';
 
-export const fetchAthletes = async () => {
+export const fetchAthleteDetails = async () => {
   try {
     const response = await fetch(`${API_URL}athlete_details`, {
       method: 'GET',
@@ -14,14 +14,13 @@ export const fetchAthletes = async () => {
     });
 
     if (!response.ok) {
-      throw new Error(`Error fetching athletes: ${response.statusText}`);
+      throw new Error(`Error fetching athletes in fetchAthleteDetails: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log("Fetched Data:", data);
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching athletes in fetchAthleteDetails: ", error);
   }
 };
 

@@ -5,7 +5,7 @@ import NavBar from './components/Global/NavBar';
 import SideBar from './components/Global/SideBar';
 import HomePage from './pages/HomePage';
 import AthletesPage from './pages/AthletesPage';
-// import Athletes from './pages/Athletes';
+import CalendarPage from './pages/CalendarPage';
 import ChatPage from './pages/ChatPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import AccountPage from './pages/AccountPage';
@@ -26,6 +26,7 @@ function App() {
                 <Route path="/analytics" element={<AnalyticsPage />} />
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/athlete/:id/calendar" element={<CalendarPage />} />
               </Routes>
           </div>
         </div>

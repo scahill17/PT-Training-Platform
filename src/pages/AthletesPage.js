@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAthletes } from '../api/api';
+import { fetchAthleteDetails } from '../api/api';
 import AthleteCard from '../components/AthletesPage/AthleteCard';
 import AthleteForm from '../components/AthletesPage/AthleteForm';
 import '../styles/AthletesPage.css'
@@ -14,7 +14,8 @@ const Athletes = () => {
   useEffect(() => {
     // Fetch the athletes when the component mounts
     const getAthletes = async () => {
-      const data = await fetchAthletes();  // Use the API call to fetch athletes
+      const data = await fetchAthleteDetails();  // Use the API call to fetch athletes
+      console.log("data: ", data);
       setAthletes(data);  // Set the athletes from the response
     };    
 
@@ -34,7 +35,7 @@ const Athletes = () => {
   };
 
   const refreshAthletes = async () => {
-    const data = await fetchAthletes();
+    const data = await fetchAthleteDetails();
     setAthletes(data);
   };
 
