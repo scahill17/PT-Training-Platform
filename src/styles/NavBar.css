@@ -82,10 +82,6 @@ html, body {
   font-size: 14px; /* Slightly smaller font size */
 }
 
-.dropdown-item:hover {
-  background-color: #4c4c4c;
-}
-
 .dropdown-icon {
   width: 20px; /* Size of the dropdown icons */
   height: 20px;
