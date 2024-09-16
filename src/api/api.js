@@ -14,7 +14,7 @@ export const fetchAthletes = async () => {
     });
 
     if (!response.ok) {
-      throw new Error(`Error fetching clients: ${response.statusText}`);
+      throw new Error(`Error fetching athletes: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -26,6 +26,7 @@ export const fetchAthletes = async () => {
 };
 
 export const addAthlete = async (newAthlete) => {
+  console.log("newAthlete: ", newAthlete);
   try {
     // Step 1: Add to the users table first
     const userResponse = await fetch(`${API_URL}users`, {
@@ -37,7 +38,7 @@ export const addAthlete = async (newAthlete) => {
       body: JSON.stringify({
         name: newAthlete.name,
         email: newAthlete.email,
-        role: 'client',  // Add the user as a client by default
+        role: 'client',
       }),
     });
 
@@ -49,7 +50,7 @@ export const addAthlete = async (newAthlete) => {
     const userId = userData.id;
 
     // Step 2: Add the client's details to the clients table
-    const clientResponse = await fetch(`${API_URL}clients`, {
+    const clientResponse = await fetch(`${API_URL}athletes`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${JWT_TOKEN}`,

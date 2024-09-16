@@ -91,7 +91,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             <label>Fitness Goals:</label>
             <input
               type="text"
-              name="fitnessGoals"
+              name="fitness_goals"
               value={formData.fitness_goals}
               onChange={handleInputChange}
             />
@@ -101,7 +101,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             <label>Medical Conditions:</label>
             <input
               type="text"
-              name="medicalConditions"
+              name="medical_conditions"
               value={formData.medical_conditions}
               onChange={handleInputChange}
             />
