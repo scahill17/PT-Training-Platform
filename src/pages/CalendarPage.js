@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { fetchAthleteDetails } from '../api/api'; // Fetch athletes from API
 import Calendar from '../components/CalendarPage/Calendar';
 import AthletesDropdown from '../components/Global/AthletesDropdown';
+import NavBar from '../components/Global/NavBar';
+import SideBar from '../components/Global/SideBar';
 import '../styles/CalendarPage.css';
 
 const CalendarPage = () => {
@@ -48,6 +50,8 @@ const CalendarPage = () => {
 
   return (
     <div className="calendar-page">
+      <SideBar />
+      <NavBar />
       <div className="calendar-content">
         <div className="calendar-header">
           <button onClick={handlePrevMonth} className="nav-button">‹</button>

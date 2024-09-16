@@ -24,6 +24,26 @@ export const fetchAthleteDetails = async () => {
   }
 };
 
+export const deleteAthlete = async (athleteId) => {
+  try {
+    const response = await fetch(`${API_URL}athletes?id=eq.${athleteId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${JWT_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error deleting athlete: ${response.statusText}`);
+    }
+
+    console.log(`Athlete with ID ${athleteId} deleted successfully.`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
 export const addAthlete = async (newAthlete) => {
   console.log("newAthlete: ", newAthlete);
   try {

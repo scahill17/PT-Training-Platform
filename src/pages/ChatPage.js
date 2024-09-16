@@ -1,5 +1,7 @@
 // src/pages/ChatPage.js
 import React, { useState } from 'react';
+import NavBar from '../components/Global/NavBar';
+import SideBar from '../components/Global/SideBar';
 import '../styles/ChatPage.css'; // You can add your styles later
 
 const ChatPage = () => {
@@ -24,6 +26,8 @@ const ChatPage = () => {
 
   return (
     <div className="chat-page">
+      <SideBar />
+      <NavBar />
       <h1>Chat Page</h1>
       <div className="chat-window">
         {messages.map((msg) => (
@@ -33,11 +37,11 @@ const ChatPage = () => {
         ))}
       </div>
       <form onSubmit={handleSendMessage} className="chat-form">
-        <input 
-          type="text" 
-          placeholder="Type a message..." 
-          value={message} 
-          onChange={(e) => setMessage(e.target.value)} 
+        <input
+          type="text"
+          placeholder="Type a message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
         <button type="submit">Send</button>
       </form>

@@ -1,0 +1,125 @@
+/* General layout */
+.account-page {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px; /* Ensures content starts after the sidebar */
+    margin-top: 80px; /* Adjust according to your navbar height */
+    padding: 30px; /* Increase padding around the content */
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .account-content {
+    display: flex;
+    width: 100%;
+    padding: 30px; /* Add padding inside the main content area */
+  }
+  
+  .account-tabs {
+    width: 220px; /* Slightly wider sidebar for account tabs */
+  }
+  
+  .account-tabs ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .account-tabs li {
+    padding: 18px 15px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .account-tabs li.active {
+    background-color: #e6e6e6;
+    font-weight: bold;
+  }
+  
+  .tab-content {
+    flex-grow: 1;
+    padding-left: 50px; /* Increase padding between sidebar and content */
+    padding-right: 20px;
+    padding-top: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* A bit more shadow for pop-out effect */
+  }
+  
+  /* Form styling */
+  .details-form {
+    max-width: 700px;
+    padding: 40px;
+  }
+  
+  .form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout */
+    gap: 40px; /* Space between columns */
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px ;
+  }
+  
+  .input-group label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .input-group input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .input-group input:focus {
+    border-color: #F2AE30;
+    box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
+  }
+  
+  /* Athlete Management */
+  .manage-athletes {
+    max-width: 700px;
+    padding: 20px;
+  }
+  
+  .athlete-list {
+    list-style: none;
+    padding: 30px 10px;
+  }
+  
+  .athlete-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .athlete-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .delete-btn {
+    background-color: #F2AE30;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-btn:hover {
+    background-color: #D9952D;
+  }
+  

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import WorkoutFeed from '../components/HomePage/WorkoutFeed';
 import NeedsProgramming from '../components/HomePage/NeedsProgramming';
+import NavBar from '../components/Global/NavBar';
+import SideBar from '../components/Global/SideBar';
 
 const HomePage = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -28,6 +30,8 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
+      <SideBar />
+      <NavBar />
       <div className="left-column">
         <WorkoutFeed workouts={workouts} />
       </div>

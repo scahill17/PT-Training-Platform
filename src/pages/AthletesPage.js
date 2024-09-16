@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchAthleteDetails } from '../api/api';
 import AthleteCard from '../components/AthletesPage/AthleteCard';
 import AthleteForm from '../components/AthletesPage/AthleteForm';
+import NavBar from '../components/Global/NavBar';
+import SideBar from '../components/Global/SideBar';
 import '../styles/AthletesPage.css'
 
 const Athletes = () => {
@@ -9,7 +11,7 @@ const Athletes = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredAthletes, setFilteredAthletes] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  
+
 
   useEffect(() => {
     // Fetch the athletes when the component mounts
@@ -17,7 +19,7 @@ const Athletes = () => {
       const data = await fetchAthleteDetails();  // Use the API call to fetch athletes
       console.log("data: ", data);
       setAthletes(data);  // Set the athletes from the response
-    };    
+    };
 
     getAthletes();
   }, []);
@@ -26,9 +28,9 @@ const Athletes = () => {
   const handleSearchChange = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
-    
+
     // Filter athletes based on the search query
-    const filtered = athletes.filter((athlete) => 
+    const filtered = athletes.filter((athlete) =>
       athlete.name.toLowerCase().includes(query)
     );
     setFilteredAthletes(filtered);
@@ -41,6 +43,8 @@ const Athletes = () => {
 
   return (
     <div className="athletes-page">
+      <SideBar />
+      <NavBar />
       <div className="athletes-header">
         <input
           type="text"
