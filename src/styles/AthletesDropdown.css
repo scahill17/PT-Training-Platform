@@ -7,11 +7,11 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    background-color: #F2AE30; /* Matches the color of buttons */
+    background-color: #F2AE30; 
     padding: 10px 20px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
-    min-width: 200px; /* Ensures it's a reasonable size */
+    min-width: 200px; 
   }
   
   .dropdown-header:hover {
@@ -19,7 +19,7 @@
   }
   
   .dropdown-athlete-pic {
-    width: 35px; /* Bigger size for better visibility */
+    width: 35px; 
     height: 35px;
     border-radius: 50%;
     margin-right: 12px;
@@ -30,7 +30,7 @@
     font-size: 14px;
     color: white;
     margin-right: 10px;
-    flex-grow: 1; /* Ensures it expands when the name is longer */
+    flex-grow: 1; 
   }
   
   .dropdown-arrow {
@@ -40,14 +40,14 @@
   
   .dropdown-list {
     position: absolute;
-    top: 55px; /* Drops below the header */
+    top: 55px; 
     right: 0;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     z-index: 100;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 220px; /* Ensures the dropdown is wide enough */
+    min-width: 220px; 
     padding: 10px 0;
   }
   
@@ -64,7 +64,7 @@
   }
   
   .dropdown-item-pic {
-    width: 30px; /* Smaller icon in the dropdown */
+    width: 30px; 
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
@@ -74,6 +74,5 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     color: #333;
-    flex-grow: 1; /* Ensures longer names don't overflow */
+    flex-grow: 1; 
   }
-  

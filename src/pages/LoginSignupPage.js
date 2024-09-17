@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/LoginSignupPage.css';
 
 const LoginSignupPage = () => {
-  const [isLogin, setIsLogin] = useState(true); // Switch between login and signup
+  const [isLogin, setIsLogin] = useState(true); 
   const navigate = useNavigate();
 
   const handleToggle = () => {
-    setIsLogin(!isLogin); // Toggle between login and signup
+    setIsLogin(!isLogin); 
   };
 
   const handleSubmit = (e) => {

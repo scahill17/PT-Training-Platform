@@ -9,7 +9,6 @@ const HomePage = () => {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    // Simulating workout and client data
     setWorkouts([
       {
         id: 1,
@@ -19,12 +18,10 @@ const HomePage = () => {
         intensity: 7,
         totalWeight: 300
       },
-      // Add more workout objects
     ]);
 
     setClients([
       { id: 1, name: 'Jane Doe' },
-      // Add more clients if necessary
     ]);
   }, []);
 

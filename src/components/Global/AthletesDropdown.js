@@ -14,18 +14,19 @@ const AthletesDropdown = ({ athletes, selectedAthlete, setSelectedAthlete, dropd
     navigate(`/athlete/${athlete.athlete_id}/calendar`);
   };
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdownOpen(false); // Close the dropdown if clicked outside
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false); 
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [setDropdownOpen]);
 
   return (
     <div className="dropdown-container" ref={dropdownRef}>

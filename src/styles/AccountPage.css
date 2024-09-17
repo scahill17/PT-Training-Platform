@@ -1,21 +1,20 @@
-/* General layout */
 .account-page {
     display: flex;
     flex-direction: column;
-    margin-left: 250px; /* Ensures content starts after the sidebar */
-    margin-top: 80px; /* Adjust according to your navbar height */
-    padding: 30px; /* Increase padding around the content */
+    margin-left: 250px; 
+    margin-top: 80px; 
+    padding: 30px; 
     font-family: 'Montserrat', sans-serif;
   }
   
   .account-content {
     display: flex;
     width: 100%;
-    padding: 30px; /* Add padding inside the main content area */
+    padding: 30px; 
   }
   
   .account-tabs {
-    width: 220px; /* Slightly wider sidebar for account tabs */
+    width: 220px; 
   }
   
   .account-tabs ul {
@@ -38,15 +37,14 @@
   
   .tab-content {
     flex-grow: 1;
-    padding-left: 50px; /* Increase padding between sidebar and content */
+    padding-left: 50px; 
     padding-right: 20px;
     padding-top: 10px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* A bit more shadow for pop-out effect */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
   }
   
-  /* Form styling */
   .details-form {
     max-width: 700px;
     padding: 40px;
@@ -54,8 +52,8 @@
   
   .form-section {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two-column layout */
-    gap: 40px; /* Space between columns */
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
   }
   
   .input-group {
@@ -82,7 +80,6 @@
     box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
   }
   
-  /* Athlete Management */
   .manage-athletes {
     max-width: 700px;
     padding: 20px;
@@ -122,4 +119,3 @@
   .delete-btn:hover {
     background-color: #D9952D;
   }
-  

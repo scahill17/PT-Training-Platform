@@ -16,14 +16,12 @@ const SideBar = () => {
 
   return (
     <div className="sidebar">
-      {/* Centered Logo */}
       <div className="sidebar-logo">
         <NavLink to="/">
           <img src={ProgressionLogo} alt="Progression Logo" />
         </NavLink>
       </div>
 
-      {/* Navigation Links */}
       <NavLink to="/" className={({ isActive }) => isActive ? 'sidebar-item active' : 'sidebar-item'}>
         <img src={HomeIcon} alt="Home" className="sidebar-icon" />
         <span>Home</span>

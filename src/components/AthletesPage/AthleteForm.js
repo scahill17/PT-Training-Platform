@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addAthlete } from '../../api/api';  // Import the API function for adding an athlete
+import { addAthlete } from '../../api/api';
 import '../../styles/AthleteForm.css'
 
 const AthleteForm = ({ onSuccess, onCancel }) => {
@@ -22,19 +22,17 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form data
     if (!formData.name || !formData.email || !formData.age) {
       alert("Please fill in all required fields");
       return;
     }
 
     try {
-      // Call API to add the new athlete to the database
       const newAthlete = await addAthlete(formData);
 
       if (newAthlete) {
         alert("Athlete added successfully");
-        onSuccess();  // Trigger success callback
+        onSuccess();
       } else {
         throw new Error("Error adding athlete: No data returned");
       }
@@ -46,10 +44,8 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
 
   return (
     <>
-      {/* Overlay background */}
       <div className="modal-overlay" onClick={onCancel}></div>
 
-      {/* Modal form */}
       <div className="modal">
         <form className="athlete-form" onSubmit={handleSubmit}>
           <h2>Add New Athlete</h2>
@@ -107,7 +103,6 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             />
           </div>
 
-          {/* Submit and Cancel Buttons */}
           <div className="modal-buttons">
             <button type="button" className="cancel" onClick={onCancel}>
               Cancel

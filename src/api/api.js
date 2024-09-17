@@ -1,95 +1,67 @@
-const API_URL = 'https://comp2140-f3bc926d.uqcloud.net/api/'; // Your PostgREST URL
-
-// JWT Token
+const API_URL = 'https://comp2140-f3bc926d.uqcloud.net/api/';
 const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCJ9.u_Tlz90goXHbi8Zn_zPvrZbugXL02U_6odPUwp1xSyQ';
 
-export const fetchAthleteDetails = async () => {
+// Helper function to handle API requests
+const apiRequest = async (endpoint, method = 'GET', body = null) => {
   try {
-    const response = await fetch(`${API_URL}athlete_details`, {
-      method: 'GET',
+    const options = {
+      method,
       headers: {
         'Authorization': `Bearer ${JWT_TOKEN}`,
         'Content-Type': 'application/json',
       },
-    });
+    };
 
-    if (!response.ok) {
-      throw new Error(`Error fetching athletes in fetchAthleteDetails: ${response.statusText}`);
+    if (body) {
+      options.body = JSON.stringify(body);
     }
 
-    const data = await response.json();
-    return data;
+    const response = await fetch(`${API_URL}${endpoint}`, options);
+
+    if (!response.ok) {
+      throw new Error(`Error in ${method} request to ${endpoint}: ${response.statusText}`);
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching athletes in fetchAthleteDetails: ", error);
+    console.error(`Error in ${method} request to ${endpoint}: `, error);
+    throw error;
   }
+};
+
+export const fetchAthleteDetails = async () => {
+  return apiRequest('athlete_details');
 };
 
 export const deleteAthlete = async (athleteId) => {
-  try {
-    const response = await fetch(`${API_URL}athletes?id=eq.${athleteId}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error deleting athlete: ${response.statusText}`);
-    }
-
-    console.log(`Athlete with ID ${athleteId} deleted successfully.`);
-  } catch (error) {
-    console.error('Error:', error);
-  }
+  await apiRequest(`athletes?id=eq.${athleteId}`, 'DELETE');
+  console.log(`Athlete with ID ${athleteId} deleted successfully.`);
 };
 
+
 export const addAthlete = async (newAthlete) => {
-  console.log("newAthlete: ", newAthlete);
   try {
-    // Step 1: Add to the users table first
-    const userResponse = await fetch(`${API_URL}users`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: newAthlete.name,
-        email: newAthlete.email,
-        role: 'client',
-      }),
+    // Add to the users table first
+    const userResponse = await apiRequest('users', 'POST', {
+      name: newAthlete.name,
+      email: newAthlete.email,
+      role: 'client',
     });
 
-    if (!userResponse.ok) {
-      throw new Error(`Error adding user: ${userResponse.statusText}`);
-    }
+    const userId = userResponse.id;
 
-    const userData = await userResponse.json();
-    const userId = userData.id;
-
-    // Step 2: Add the client's details to the clients table
-    const clientResponse = await fetch(`${API_URL}athletes`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${JWT_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user_id: userId,
-        age: newAthlete.age,
-        fitness_goals: newAthlete.fitness_goals,
-        medical_conditions: newAthlete.medical_conditions,
-      }),
+    // Add to the athletes table
+    const athleteResponse = await apiRequest('athletes', 'POST', {
+      user_id: userId,
+      age: newAthlete.age,
+      fitness_goals: newAthlete.fitness_goals,
+      medical_conditions: newAthlete.medical_conditions,
     });
 
-    if (!clientResponse.ok) {
-      throw new Error(`Error adding client: ${clientResponse.statusText}`);
-    }
+    return athleteResponse; 
 
-    return await clientResponse.json();  // Return the new client data
   } catch (error) {
-    console.error(error);
-    return null;
+    console.error('Error adding athlete:', error);
+    throw error;
   }
 };

@@ -2,8 +2,8 @@
 
 .sidebar {
   background-color: #1e1e1e;
-  width: 250px; /* Thicker sidebar */
-  position: fixed; /* Fixed position to stick to the left and top */
+  width: 250px; 
+  position: fixed; 
   top: 0;
   left: 0;
   display: flex;
@@ -63,4 +63,3 @@
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
 }
-

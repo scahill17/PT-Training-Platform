@@ -14,22 +14,18 @@ const Athletes = () => {
 
 
   useEffect(() => {
-    // Fetch the athletes when the component mounts
     const getAthletes = async () => {
-      const data = await fetchAthleteDetails();  // Use the API call to fetch athletes
+      const data = await fetchAthleteDetails();  
       console.log("data: ", data);
-      setAthletes(data);  // Set the athletes from the response
+      setAthletes(data);  
     };
 
     getAthletes();
   }, []);
 
-  // Handle search input change
   const handleSearchChange = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
-
-    // Filter athletes based on the search query
     const filtered = athletes.filter((athlete) =>
       athlete.name.toLowerCase().includes(query)
     );
@@ -58,14 +54,13 @@ const Athletes = () => {
         </button>
       </div>
 
-      {/* Show Add Athlete Form as Modal */}
       {showForm && (
         <AthleteForm
           onSuccess={() => {
             setShowForm(false);
-            refreshAthletes();  // Refresh the list of athletes after successful submission
+            refreshAthletes();  
           }}
-          onCancel={() => setShowForm(false)}  // Hide the form if cancelled
+          onCancel={() => setShowForm(false)}  
         />
       )}
 

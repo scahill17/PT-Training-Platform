@@ -1,4 +1,3 @@
-// src/pages/AnalyticsPage.js
 import React from 'react';
 import NavBar from '../components/Global/NavBar';
 import SideBar from '../components/Global/SideBar';

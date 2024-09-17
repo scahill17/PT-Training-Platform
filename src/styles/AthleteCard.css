@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20px;
-  flex: 1 1 22%;  /* Allows 4 cards per row by default */
+  flex: 1 1 22%;  
   min-width: 250px;
   max-width: 300px;
   box-sizing: border-box;
@@ -74,15 +74,14 @@
   transform: scale(1.1);
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .athlete-card {
-    flex: 1 1 45%;  /* Two cards per row on medium screens */
+    flex: 1 1 45%;  
   }
 }
 
 @media (max-width: 768px) {
   .athlete-card {
-    flex: 1 1 100%;  /* One card per row on small screens */
+    flex: 1 1 100%;  
   }
 }

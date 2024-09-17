@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import UserProfile from '../../assets/User Profile.png';
 import DownArrow from '../../assets/Down Arrow.png';
-// import AccountIcon from '../../assets/Account Icon.png';
 import LogoutIcon from '../../assets/Logout Icon.png';
 import '../../styles/NavBar.css'; // Updated CSS
 
@@ -23,7 +22,7 @@ const NavBar = () => {
       case '/account':
         return 'Account';
       default:
-        return 'Welcome back, Coach'; // Default message
+        return 'Welcome back, Coach';
     }
   };
 
@@ -35,12 +34,10 @@ const NavBar = () => {
     <div className="navbar">
 
 
-      {/* Welcome Text */}
       <div className="navbar-text">
         {getWelcomeMessage()}
       </div>
 
-      {/* Profile & Dropdown */}
       <div
         className="navbar-profile"
         onMouseEnter={toggleDropdown}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchAthleteDetails } from '../api/api'; // Fetch athletes from API
+import { fetchAthleteDetails } from '../api/api'; 
 import Calendar from '../components/CalendarPage/Calendar';
 import AthletesDropdown from '../components/Global/AthletesDropdown';
 import NavBar from '../components/Global/NavBar';
@@ -21,13 +21,12 @@ const CalendarPage = () => {
       const athleteData = await fetchAthleteDetails();
       setAthletes(athleteData);
 
-      // Ensure the correct athlete is selected based on the athleteId from the URL
       const athlete = athleteData.find(a => a.athlete_id === parseInt(athleteId));
       console.log(athlete);
       if (athlete) {
         setSelectedAthlete(athlete);
       } else {
-        setSelectedAthlete(athleteData[0]); // Fallback to the first athlete if none match
+        setSelectedAthlete(athleteData[0]); 
       }
     };
 
@@ -40,11 +39,10 @@ const CalendarPage = () => {
   const handleTodayClick = () => setDate(new Date());
 
   const handleEditSessionClick = (day) => {
-    const formattedMonth = String(date.getMonth() + 1).padStart(2, '0'); // Format the month as MM
-    const formattedDay = String(day).padStart(2, '0'); // Format the day as DD
-    const year = date.getFullYear(); // Get the year
+    const formattedMonth = String(date.getMonth() + 1).padStart(2, '0'); 
+    const formattedDay = String(day).padStart(2, '0'); 
+    const year = date.getFullYear(); 
 
-    // Navigate to the desired route with day, month, and year
     navigate(`/athlete/${athleteId}/calendar/${formattedDay}/${formattedMonth}/${year}`);
   };
 
@@ -76,7 +74,7 @@ const CalendarPage = () => {
           date={date}
           hoveredDay={hoveredDay}
           setHoveredDay={setHoveredDay}
-          handleEditSessionClick={handleEditSessionClick} // Update function here
+          handleEditSessionClick={handleEditSessionClick} 
         />
       </div>
     </div>
