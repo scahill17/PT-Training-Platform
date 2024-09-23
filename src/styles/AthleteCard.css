@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
+/* Athletes container */
 .athletes-container {
   display: flex;
   flex-wrap: wrap;
@@ -8,59 +9,79 @@
   padding: 20px;
 }
 
+/* Athlete Card Styling */
 .athlete-card {
-  background-color: #f9f9f9;
-  border: 1px solid #dddddd;
-  border-radius: 10px;
+  background-color: white;
+  border-radius: 12px; /* Softer corners */
   padding: 20px;
   font-family: 'Montserrat', sans-serif;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20px;
-  flex: 1 1 22%;  
+  flex: 1 1 22%;
   min-width: 250px;
   max-width: 300px;
   box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #E6E6E6; /* Light grey border */
 }
 
+.athlete-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Darker shadow on hover */
+}
+
+/* Header and Profile Picture */
 .athlete-card-header {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .profile-pic {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-right: 20px;
+  margin-right: 15px;
+  
 }
 
+/* Athlete Name */
 .athlete-name {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333; /* Darker text for contrast */
 }
 
+/* Athlete Info */
 .athlete-info {
-  font-size: 16px;
+  font-size: 15px;
   margin: 10px 0;
+  color: #777777; /* Subtle grey color for labels */
 }
 
 .athlete-info .label {
-  color: #333333;
-  font-weight: bold;
+  color: #F2AE30; /* Orange label */
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .athlete-info .value {
-  color: #777777;
+  color: #333333;
+  word-break: break-word; 
+  white-space: normal; 
+  overflow-wrap: break-word;
+  max-width: 100%; 
 }
 
+/* Athlete Card Actions */
 .athlete-card-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .action-icon {
@@ -76,12 +97,12 @@
 
 @media (max-width: 1200px) {
   .athlete-card {
-    flex: 1 1 45%;  
+    flex: 1 1 45%;
   }
 }
 
 @media (max-width: 768px) {
   .athlete-card {
-    flex: 1 1 100%;  
+    flex: 1 1 100%;
   }
 }

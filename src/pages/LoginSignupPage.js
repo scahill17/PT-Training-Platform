@@ -12,7 +12,7 @@ const LoginSignupPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/');
+    navigate('/home');
   };
 
   return (

@@ -22,7 +22,7 @@ const SideBar = () => {
         </NavLink>
       </div>
 
-      <NavLink to="/" className={({ isActive }) => isActive ? 'sidebar-item active' : 'sidebar-item'}>
+      <NavLink to="/home" className={({ isActive }) => isActive ? 'sidebar-item active' : 'sidebar-item'}>
         <img src={HomeIcon} alt="Home" className="sidebar-icon" />
         <span>Home</span>
       </NavLink>

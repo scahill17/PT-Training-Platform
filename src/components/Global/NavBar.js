@@ -10,21 +10,23 @@ const NavBar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const getWelcomeMessage = () => {
-    switch (location.pathname) {
-      case '/':
-        return 'Welcome back, Coach';
-      case '/athletes':
-        return 'My Athletes';
-      case '/analytics':
-        return 'Analytics';
-      case '/chat':
-        return 'Messaging';
-      case '/account':
-        return 'Account';
-      default:
-        return 'Welcome back, Coach';
+    const path = location.pathname;
+  
+    if (path === '/') {
+      return 'Welcome back, Coach';
+    } else if (path.startsWith('/athletes') || path.startsWith('/athlete/')) {
+      return 'My Athletes';
+    } else if (path.startsWith('/analytics')) {
+      return 'Analytics';
+    } else if (path.startsWith('/chat')) {
+      return 'Messaging';
+    } else if (path.startsWith('/account')) {
+      return 'Account';
+    } else {
+      return 'Welcome back, Coach';
     }
   };
+  
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -51,7 +53,7 @@ const NavBar = () => {
               <img src={UserProfile} alt="Account Icon" className="dropdown-icon" />
               Account
             </Link>
-            <Link to="/login" className="dropdown-item">
+            <Link to="/" className="dropdown-item">
               <img src={LogoutIcon} alt="Logout Icon" className="dropdown-icon" />
               Logout
             </Link>
