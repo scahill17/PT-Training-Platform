@@ -12,12 +12,12 @@ const Athletes = () => {
   const [filteredAthletes, setFilteredAthletes] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-
   useEffect(() => {
     const getAthletes = async () => {
       const data = await fetchAthleteDetails();  
       console.log("data: ", data);
-      setAthletes(data);  
+      setAthletes(data);
+      setFilteredAthletes(data); // Initialize the filtered athletes to show all at first
     };
 
     getAthletes();
@@ -26,15 +26,19 @@ const Athletes = () => {
   const handleSearchChange = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
+
+    // Filter the athletes based on the query
     const filtered = athletes.filter((athlete) =>
       athlete.name.toLowerCase().includes(query)
     );
-    setFilteredAthletes(filtered);
+
+    setFilteredAthletes(filtered); // Set filtered athletes based on the query
   };
 
   const refreshAthletes = async () => {
     const data = await fetchAthleteDetails();
     setAthletes(data);
+    setFilteredAthletes(data); // Refresh both athlete and filtered athlete lists
   };
 
   return (
@@ -65,9 +69,13 @@ const Athletes = () => {
       )}
 
       <div className="athletes-grid">
-        {(filteredAthletes.length > 0 ? filteredAthletes : athletes)?.map(athlete => (
-          <AthleteCard key={athlete.athlete_id} athlete={athlete} />
-        ))}
+        {filteredAthletes.length > 0 ? (
+          filteredAthletes.map(athlete => (
+            <AthleteCard key={athlete.athlete_id} athlete={athlete} />
+          ))
+        ) : (
+          <p className="no-athletes-message">No athletes found.</p>
+        )}
       </div>
     </div>
   );

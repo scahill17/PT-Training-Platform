@@ -42,3 +42,15 @@
     gap: 40px;  
     justify-items: stretch; 
   } 
+
+  .no-athletes-message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #333;
+    text-align: center; 
+    padding: 20px;
+    display: block; 
+    width: 100%; 
+    box-sizing: border-box;
+    margin-top: 0;
+  }

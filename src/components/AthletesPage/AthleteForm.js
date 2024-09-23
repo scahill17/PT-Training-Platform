@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { addAthlete } from '../../api/api';
-import '../../styles/AthleteForm.css'
+import '../../styles/AthleteForm.css'; // Ensure the CSS is imported
 
 const AthleteForm = ({ onSuccess, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -50,7 +50,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
         <form className="athlete-form" onSubmit={handleSubmit}>
           <h2>Add New Athlete</h2>
 
-          <div>
+          <div className="input-group">
             <label>Name:</label>
             <input
               type="text"
@@ -61,7 +61,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             />
           </div>
 
-          <div>
+          <div className="input-group">
             <label>Email:</label>
             <input
               type="email"
@@ -72,7 +72,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             />
           </div>
 
-          <div>
+          <div className="input-group">
             <label>Age:</label>
             <input
               type="number"
@@ -83,7 +83,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             />
           </div>
 
-          <div>
+          <div className="input-group">
             <label>Fitness Goals:</label>
             <input
               type="text"
@@ -93,7 +93,7 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             />
           </div>
 
-          <div>
+          <div className="input-group">
             <label>Medical Conditions:</label>
             <input
               type="text"
@@ -107,7 +107,9 @@ const AthleteForm = ({ onSuccess, onCancel }) => {
             <button type="button" className="cancel" onClick={onCancel}>
               Cancel
             </button>
-            <button type="submit">Submit</button>
+            <button type="submit" className="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>
