@@ -7,10 +7,10 @@ import { fetchAthleteDetails, deleteAthlete } from '../api/api';
 const AccountPage = () => {
   const [selectedTab, setSelectedTab] = useState('details');
   const [athletes, setAthletes] = useState([]);
-  const [userData, setUserData] = useState({
+  const userData = {
     name: 'John Coach',
     email: 'john.coach@example.com',
-  });
+  };
 
   useEffect(() => {
     const loadAthletes = async () => {

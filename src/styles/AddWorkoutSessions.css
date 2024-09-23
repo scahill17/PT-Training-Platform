@@ -1,0 +1,96 @@
+.add-workout-page {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 250px;
+    margin-top: 80px;
+    padding: 20px;
+  }
+  
+  .form-container {
+    margin: 0 auto;
+    width: 60%;
+    text-align: left;
+    padding: 40px 40px; 
+  }
+  
+  /* Back to Calendar link with arrow */
+  .back-to-calendar {
+    font-size: 18px;
+    color: #555;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-bottom: 40px;
+    transition: color 0.3s ease;
+  }
+  
+  .back-to-calendar:hover {
+    color: #F2AE30;
+    font-weight: 600;
+  }
+  
+  .back-arrow {
+    font-size: 24px;
+  }
+  
+  /* Date row with icons */
+  .date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .date-display {
+    font-weight:600;
+  }
+  
+  /* Icon buttons */
+  .icon-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .save-icon {
+    color: #F2AE30;
+  }
+
+  .save-icon:hover {
+    color: #d49b29;
+  }
+  
+  .delete-icon {
+    color: #888888;
+  }
+  
+  .delete-icon:hover {
+    color: #5a5a5a;
+  }
+
+  /* Generate Workout Button */
+  .generate-workout-button {
+    padding: 12px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    background-color: #F2AE30;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+  }
+  
+  .generate-workout-button:hover {
+    background-color: #d49b29;
+    font-weight: 600;
+  }
+  
