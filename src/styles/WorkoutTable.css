@@ -1,0 +1,83 @@
+.workout-table-container {
+    width: 100%; /* Ensures the table takes full width */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 10px;
+  }
+  
+  .exercise-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+  
+  .exercise-table th,
+  .exercise-table td {
+    font-size: 16px;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+  
+  .exercise-table th {
+    background-color: #F2AE30;
+    color: white;
+    border-bottom: 2px solid #d49b29;
+  }
+  
+  .exercise-table td:last-child,
+  .exercise-table th:last-child {
+    border-right: none;
+  }
+  
+  .number-input {
+    font-size: 14px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    background-color: transparent;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .number-input:focus {
+    outline: none; /* Removes default focus box */
+    border-bottom: 2px solid #F2AE30; /* Orange underline when focused */
+    background-color: transparent;
+  }
+  
+  .sets-control {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%; /* Ensure it spans the width of the table */
+  }
+  
+  .sets-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: #F2AE30;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .sets-icon:hover {
+    color: #d49b29;
+  }
+  
+  .sets-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 10px; /* Adjust spacing if needed */
+  }
+  
+  .set-icons {
+    display: flex;
+    gap: 10px;
+  }  
