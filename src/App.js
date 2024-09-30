@@ -10,6 +10,7 @@ import LoginSignupPage from './pages/LoginSignupPage';
 import ChatPage from './pages/ChatPage';
 import './App.css';
 import AddWorkoutSessionsPage from './pages/AddWorkoutSessions';
+import ViewWorkoutPage from './pages/ViewWorkoutPage';
 
 function App() {
   
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/chat/:athleteId" element={<ChatPage />} />
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/athlete/:athleteID/calendar/:day/:month/:year" element={<AddWorkoutSessionsPage />} />
+                <Route path="/athlete/:athleteID/calendar/:day/:month/:year/view" element={<ViewWorkoutPage />} />
               </Routes>
           </div>
         </div>

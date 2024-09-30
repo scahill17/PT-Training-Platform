@@ -115,6 +115,7 @@ const AddWorkoutSessions = () => {
       // Send workout session data to the API to save in the database
       await saveWorkoutSession(workoutSessionData);
       console.log('Workout session saved successfully');
+      alert('Workout session updated successfully!');
       navigate(`/athlete/${athleteID}/calendar`);
     } catch (error) {
       console.error('Error saving workout session:', error);

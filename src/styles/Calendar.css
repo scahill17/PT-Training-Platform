@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
+/* Calendar Grid Layout */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr); 
@@ -9,8 +10,10 @@
   padding-left: 20px;
 }
 
+/* Styling for Each Calendar Day */
 .calendar-day {
   display: flex;
+  flex-direction: column; /* Changed to column layout for date and button */
   justify-content: flex-start; 
   align-items: flex-start; 
   padding: 10px;
@@ -23,43 +26,66 @@
   height: 100px;
 }
 
+/* Hover Effect for Calendar Day */
 .calendar-day:hover {
   background-color: #e6e6e6; 
 }
 
+/* Styling for Empty Days */
 .calendar-day.empty {
   background-color: #f9f9f9; 
 }
 
+/* Styling for Days in the Previous/Next Month */
 .calendar-day.trailing {
   color: #aaaaaa; 
 }
 
+/* Date Number Display */
 .calendar-day .date-number {
   font-size: 14px;
   text-align: left;
+  position: relative;
 }
 
-.edit-session-button {
-  position: relative;
+/* Container for Date and Dot */
+.date-dot-container {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Adds space between the date and the dot */
+}
+
+/* Common Button Styling for View and Create Session */
+.session-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
   background-color: #F2AE30;
   color: white;
   border: none;
-  padding: 12px 16px; 
-  font-size: 14px; 
+  padding: 8px 12px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 8px;
-  margin-top: 5px;
+  border-radius: 5px;
   text-align: center;
-  display: none; 
 }
 
-.edit-session-button:hover {
-  background-color: #d99427; 
+/* Hover Effect for Buttons */
+.session-button:hover {
+  background-color: #d99427;
 }
 
-.calendar-day:hover .edit-session-button {
+/* Hover: Show Edit/Create Session Button */
+.calendar-day:hover .session-button {
   display: block; 
-  margin-top: 10px; 
   align-self: center; 
+}
+
+/* Dot for Existing Workout Sessions */
+.workout-dot {
+  width: 8px; 
+  height: 8px;
+  background-color: #F2AE30; 
+  border-radius: 50%;
+  align-self: center;
 }

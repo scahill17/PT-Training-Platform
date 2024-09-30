@@ -206,3 +206,64 @@ export const saveWorkoutSession = async (workoutSessionData) => {
   }
 };
 
+export const fetchWorkoutSessions = async (athleteId) => {
+  try {
+    const response = await apiRequest(`workout_sessions?athlete_id=eq.${athleteId}`, 'GET');
+    return response;
+  } catch (error) {
+    console.error('Error fetching workout sessions:', error);
+    throw error;
+  }
+};
+
+// Update an existing workout session
+// Update an existing workout session and add new exercises or sets if needed
+export const deleteWorkoutSession = async (athleteId, date) => {
+  try {
+    // Make API request to delete the workout session based on athleteId and date
+    await apiRequest(`workout_sessions?athlete_id=eq.${athleteId}&date=eq.${date}`, 'DELETE');
+    console.log(`Workout session for athlete ${athleteId} on ${date} deleted successfully.`);
+  } catch (error) {
+    console.error('Error deleting workout session:', error);
+    throw error; // Rethrow the error so it can be caught in the calling function
+  }
+};
+
+
+// Fetch the full workout session details
+export const fetchWorkoutSessionDetails = async (athleteId, date) => {
+  try {
+    const sessionResponse = await apiRequest(`workout_sessions?athlete_id=eq.${athleteId}&date=eq.${date}`, 'GET');
+    if (!sessionResponse || sessionResponse.length === 0) {
+      throw new Error('Workout session not found');
+    }
+
+    const sessionId = sessionResponse[0].id;
+
+    // Fetch workout details
+    const detailsResponse = await apiRequest(`workout_details?workout_session_id=eq.${sessionId}`, 'GET');
+
+    const exercises = await Promise.all(
+      detailsResponse.map(async (detail) => {
+        const exerciseResponse = await apiRequest(`exercises?id=eq.${detail.exercise_id}`, 'GET');
+        const setsResponse = await apiRequest(`workout_sets?workout_detail_id=eq.${detail.id}`, 'GET');
+        
+        return {
+          name: exerciseResponse[0].name,
+          instructions: detail.instructions,
+          sets: setsResponse.length,
+          reps: setsResponse.map((set) => set.reps),
+          weight: setsResponse.map((set) => set.weight),
+        };
+      })
+    );
+
+    return {
+      id: sessionId,
+      exercises,
+    };
+  } catch (error) {
+    console.error('Error fetching workout session details:', error);
+    throw error;
+  }
+};
