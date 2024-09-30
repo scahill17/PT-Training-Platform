@@ -3,10 +3,12 @@ import NavBar from '../components/Global/NavBar';
 import SideBar from '../components/Global/SideBar';
 import '../styles/AccountPage.css';
 import { fetchAthleteDetails, deleteAthlete } from '../api/api';
+import { fetchExercises, deleteExercise } from '../api/api'; // Exercise API functions
 
 const AccountPage = () => {
   const [selectedTab, setSelectedTab] = useState('details');
   const [athletes, setAthletes] = useState([]);
+  const [exercises, setExercises] = useState([]); // State for exercises
   const userData = {
     name: 'John Coach',
     email: 'john.coach@example.com',
@@ -20,11 +22,24 @@ const AccountPage = () => {
     loadAthletes();
   }, []);
 
+  useEffect(() => {
+    const loadExercises = async () => {
+      const data = await fetchExercises();
+      setExercises(data);
+    };
+    loadExercises();
+  }, []);
+
   const handleTabSwitch = (tab) => setSelectedTab(tab);
 
   const handleDeleteAthlete = async (athleteId) => {
     await deleteAthlete(athleteId);
     setAthletes(athletes.filter((athlete) => athlete.athlete_id !== athleteId));
+  };
+
+  const handleDeleteExercise = async (exerciseId) => {
+    await deleteExercise(exerciseId);
+    setExercises(exercises.filter((exercise) => exercise.id !== exerciseId));
   };
 
   return (
@@ -39,6 +54,9 @@ const AccountPage = () => {
             </li>
             <li className={selectedTab === 'manage' ? 'active' : ''} onClick={() => handleTabSwitch('manage')}>
               Manage Athletes
+            </li>
+            <li className={selectedTab === 'exercises' ? 'active' : ''} onClick={() => handleTabSwitch('exercises')}>
+              Manage Exercises
             </li>
           </ul>
         </div>
@@ -80,6 +98,31 @@ const AccountPage = () => {
                   ))
                 ) : (
                   <p>No athletes available.</p>
+                )}
+              </ul>
+            </div>
+          )}
+
+          {selectedTab === 'exercises' && (
+            <div className="manage-athletes"> {/* Reused manage-athletes class */}
+              <h3>Manage Exercises</h3>
+              <ul className="athlete-list"> {/* Reused athlete-list class */}
+                {exercises.length > 0 ? (
+                  exercises.map((exercise) => (
+                    <li key={exercise.id} className="athlete-item"> {/* Reused athlete-item class */}
+                      <div>
+                        <strong>{exercise.name}</strong>
+                      </div>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDeleteExercise(exercise.id)}
+                      >
+                        Delete
+                      </button>
+                    </li>
+                  ))
+                ) : (
+                  <p>No exercises available.</p>
                 )}
               </ul>
             </div>

@@ -5,7 +5,7 @@ import '../styles/ChatPage.css';
 
 const ChatPage = () => {
   const dummyChats = [
-    { id: 1, name: 'John Doe', messages: ['This is my chat page.', 'No there is no API for storing conversations.', 'No this isnt functional at all.', 'Was I being lazy?', 'Perhaps', 'But it aint in the criteriaaa', 'And I still gave you a pretty, albeit dynamic, page', 'The message box is functional so feel free to chat to yourself.'] },
+    { id: 1, name: 'John Doe', messages: ['This is my chat page.', 'No there is no API for storing conversations.', 'No this isnt functional at all.', 'Was I being lazy?', 'Perhaps', 'But it aint in the criteriaaa', 'And I still gave you a pretty, albeit static, page', 'The message box is functional so feel free to chat to yourself.'] },
     { id: 2, name: 'Jane Smith', messages: ['When is the next session?', 'You have a calendar for a reason, are you dumb?'] },
     { id: 3, name: 'Chris Evans', messages: ['Can we reschedule?', 'Why, did you decide to have a big night out last night and now you cant keep up with your commitments?', 'No, its just a bit awkward since we broke up yesterday...', 'Ohhhh why dont you just run to your new boyfrined, he can train you cant he?', 'Fine, I may do just that, hes better than you anyways', 'Fine', 'Fine', 'Bye','Cry harder'] }
   ];

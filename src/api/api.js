@@ -66,8 +66,6 @@ export const deleteAthlete = async (athleteId) => {
   }
 };
 
-
-
 export const addAthlete = async (newAthlete) => {
   try {
     await apiRequest('users', 'POST', {
@@ -104,3 +102,107 @@ export const addAthlete = async (newAthlete) => {
     throw error;
   }
 };
+
+// Fetch available exercises for the dropdown
+export const fetchExercises = async () => {
+  return apiRequest('exercises', 'GET');
+};
+
+// Add a new exercise to the exercises table
+export const addNewExercise = async (exerciseName) => {
+  return apiRequest('exercises', 'POST', { name: exerciseName });
+};
+
+export const deleteExercise = async (exerciseId) => {
+  try {
+    await apiRequest(`exercises?id=eq.${exerciseId}`, 'DELETE'); // Delete the exercise by its ID
+    console.log(`Exercise with ID ${exerciseId} deleted successfully.`);
+  } catch (error) {
+    console.error(`Error deleting exercise:`, error);
+    throw error;
+  }
+};
+
+export const saveWorkoutSession = async (workoutSessionData) => {
+  try {
+    console.log("128 athleteID: ", workoutSessionData.athlete_id);
+    console.log("129 date: ", workoutSessionData.date);
+    console.log("130 exercises: ", workoutSessionData.exercises);
+
+    // Create the workout session
+    await apiRequest('workout_sessions', 'POST', {
+      athlete_id: workoutSessionData.athlete_id,  // Ensure athleteID is being sent
+      date: workoutSessionData.date,  // Date of the workout session
+    });
+
+    console.log("Session created, fetching session by athlete_id and date");
+
+    // Fetch session to get sessionId using athlete_id and date
+    const sessionFetch = await apiRequest(`workout_sessions?athlete_id=eq.${workoutSessionData.athlete_id}&date=eq.${workoutSessionData.date}`, 'GET');
+    const sessionId = sessionFetch[0]?.id;
+
+    if (!sessionId) {
+      throw new Error('Session ID not found after session creation.');
+    }
+
+    console.log("sessionresponse: ", sessionFetch);
+    console.log("sessionID: ", sessionId);
+
+    // Now create workout details for each exercise
+    for (const exercise of workoutSessionData.exercises) {
+      const { name, sets, instructions, reps, weight } = exercise;
+
+      // Find the exercise ID based on name
+      const exerciseFetch = await apiRequest(`exercises?name=eq.${name}`, 'GET');
+      const exerciseId = exerciseFetch[0]?.id;
+
+      if (!exerciseId) {
+        throw new Error(`Exercise ID not found for exercise: ${name}`);
+      }
+
+      console.log("ExerciseId: ", exerciseId);
+      // Insert workout details
+      await apiRequest('workout_details', 'POST', {
+        workout_session_id: sessionId,  // Foreign key to the workout session
+        exercise_id: exerciseId,  // Exercise being performed
+        instructions: instructions,  // Instructions for the exercise
+      });
+
+      // Fetch the workout_detail_id using workout_session_id and exercise_id
+      const workoutDetailFetch = await apiRequest(
+        `workout_details?workout_session_id=eq.${sessionId}&exercise_id=eq.${exerciseId}`,
+        'GET'
+      );
+      const workoutDetailId = workoutDetailFetch[0]?.id;  // Retrieve the workout_detail_id
+      console.log("Workout Detail ID:", workoutDetailId);
+
+      if (!workoutDetailId) {
+        throw new Error('Workout Detail ID not found');
+      }
+
+      // Now insert each set
+      for (let i = 0; i < sets; i++) {
+        console.log("index: ", i);
+        console.log("sessionID: ", sessionId);
+        console.log("exerciseID: ", exerciseId);
+        console.log("set number: ", i + 1);
+        console.log("reps[i]: ", reps[i]);
+        console.log("weight[i]: ", weight[i]);
+
+        await apiRequest('workout_sets', 'POST', {
+          workout_detail_id: workoutDetailId,  // Foreign key to the workout details
+          set_number: i + 1,  // Set number (1-indexed)
+          reps: reps[i],  // Number of reps for this set
+          weight: weight[i],  // Weight for this set
+        });
+
+        console.log(`Set ${i + 1}: Reps ${reps[i]}, Weight ${weight[i]}`);
+      }
+
+    }
+  } catch (error) {
+    console.error('Error saving workout session:', error);
+    throw error;
+  }
+};
+

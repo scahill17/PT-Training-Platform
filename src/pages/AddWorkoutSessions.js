@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/Global/NavBar';
 import SideBar from '../components/Global/SideBar';
 import WorkoutTable from '../components/WorkoutPage/WorkoutTable';
-import { FaSave, FaTrash, FaCheck, FaTimes } from 'react-icons/fa'; // Removed FaPlus
+import { FaSave, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
-import '../styles/AddWorkoutSessions.css'; // AddWorkoutSessions styles
+import '../styles/AddWorkoutSessions.css';
+import { fetchExercises, addNewExercise, saveWorkoutSession } from '../api/api'; // Import the saveWorkoutSession API
 
 const AddWorkoutSessions = () => {
   const { athleteID, day, month, year } = useParams();
   const navigate = useNavigate();
 
   const [exercises, setExercises] = useState([]);
+  const [exerciseOptions, setExerciseOptions] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [exerciseOptions, setExerciseOptions] = useState(['Squat', 'Deadlift', 'Bench Press', 'Push Up', 'Pull Up']);
   const [newExerciseIndexes, setNewExerciseIndexes] = useState([]);
   const [newExerciseName, setNewExerciseName] = useState('');
+
+  // Fetch exercises from the database on mount
+  useEffect(() => {
+    const loadExercises = async () => {
+      try {
+        const fetchedExercises = await fetchExercises();
+        const exerciseNames = fetchedExercises.map(exercise => exercise.name);
+        setExerciseOptions([...exerciseNames]);  // Exclude 'New Exercise' initially
+      } catch (error) {
+        console.error('Error fetching exercises:', error);
+      }
+    };
+
+    loadExercises();
+  }, []);
 
   const handleBackClick = () => {
     navigate(`/athlete/${athleteID}/calendar`);
@@ -33,22 +49,29 @@ const AddWorkoutSessions = () => {
     if (value === 'New Exercise') {
       setNewExerciseIndexes([...newExerciseIndexes, index]);
     } else {
-      setNewExerciseIndexes(newExerciseIndexes.filter((i) => i !== index));
+      setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index));
     }
   };
 
+  // Handles text input for exercise instructions
   const handleInstructionsChange = (index, value) => {
     const updatedExercises = [...exercises];
     updatedExercises[index].instructions = value;
     setExercises(updatedExercises);
   };
 
-  const handleAddNewExerciseConfirm = (index) => {
+  // Handles adding new exercise to both the dropdown and database
+  const handleAddNewExerciseConfirm = async (index) => {
     if (newExerciseName.trim()) {
-      setExerciseOptions([...exerciseOptions, newExerciseName]);
-      handleExerciseChange(index, newExerciseName);
-      setNewExerciseIndexes(newExerciseIndexes.filter((i) => i !== index));
-      setNewExerciseName('');
+      try {
+        await addNewExercise(newExerciseName); // Call to add exercise to DB
+        setExerciseOptions([...exerciseOptions, newExerciseName]); // Add new exercise before "New Exercise"
+        handleExerciseChange(index, newExerciseName); // Update selected exercise
+        setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index)); // Remove from new exercise list
+        setNewExerciseName(''); // Clear input field
+      } catch (error) {
+        console.error('Error adding new exercise:', error);
+      }
     }
   };
 
@@ -56,10 +79,9 @@ const AddWorkoutSessions = () => {
     const updatedExercises = [...exercises];
     updatedExercises[index].name = '';
     setExercises(updatedExercises);
-    setNewExerciseIndexes(newExerciseIndexes.filter((i) => i !== index));
+    setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index));
     setNewExerciseName('');
   };
-  
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -71,6 +93,32 @@ const AddWorkoutSessions = () => {
   const handleDeleteExercise = (index) => {
     const updatedExercises = exercises.filter((_, i) => i !== index);
     setExercises(updatedExercises);
+  };
+
+  const handleSaveWorkout = async () => {
+    try {
+      // Prepare data for the workout session
+      const workoutSessionData = {
+        athlete_id: athleteID,
+        date: `${year}-${month}-${day}`, // Format the date properly
+        exercises: exercises.map((exercise) => ({
+          name: exercise.name,
+          instructions: exercise.instructions,
+          sets: exercise.sets,
+          reps: exercise.reps,
+          weight: exercise.weight
+        }))
+      };
+
+      console.log("parsed athleteID: ", workoutSessionData.athlete_id);
+      console.log("parsed date: ", workoutSessionData.date);
+      // Send workout session data to the API to save in the database
+      await saveWorkoutSession(workoutSessionData);
+      console.log('Workout session saved successfully');
+      navigate(`/athlete/${athleteID}/calendar`);
+    } catch (error) {
+      console.error('Error saving workout session:', error);
+    }
   };
 
   return (
@@ -87,7 +135,7 @@ const AddWorkoutSessions = () => {
         <div className="date-row">
           <span className="date-display">{`${day}/${month}/${year}`}</span>
           <div className="icon-buttons">
-            <FaSave className="icon save-icon" />
+            <FaSave className="icon save-icon" onClick={handleSaveWorkout} />
             <FaTrash className="icon delete-icon" onClick={openModal} />
           </div>
         </div>
@@ -123,10 +171,11 @@ const AddWorkoutSessions = () => {
                     >
                       <option value="">Select Exercise</option>
                       {exerciseOptions.map((option, i) => (
-                        <option key={i} value={option} style={option === 'New Exercise' ? { fontWeight: 'bold' } : {}}>
+                        <option key={i} value={option}>
                           {option}
                         </option>
                       ))}
+                      {/* Always show "New Exercise" at the bottom and in bold */}
                       <option value="New Exercise" style={{ fontWeight: 'bold' }}>
                         New Exercise
                       </option>
@@ -152,7 +201,6 @@ const AddWorkoutSessions = () => {
                   exercises={exercises}
                 />
               </div>
-
             </div>
 
             <div className="delete-exercise-button">
