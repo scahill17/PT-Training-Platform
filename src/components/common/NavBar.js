@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import UserProfile from '../../assets/User Profile.png';
 import DownArrow from '../../assets/Down Arrow.png';
 import LogoutIcon from '../../assets/Logout Icon.png';
-import '../../styles/NavBar.css'; // Updated CSS
+import './NavBar.css'; // Updated CSS
 
 const NavBar = () => {
   const location = useLocation();

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
-import WorkoutTable from '../components/WorkoutPage/WorkoutTable';
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
+import WorkoutTable from '../../components/common/WorkoutTable';
 import { FaSave, FaTrash, FaPlus, FaCheck, FaTimes } from 'react-icons/fa'; 
 import { IoIosArrowBack } from 'react-icons/io';
-import '../styles/ViewWorkoutPage.css';
-import { fetchWorkoutSessionDetails, deleteWorkoutSession, saveWorkoutSession, fetchExercises, addNewExercise } from '../api/api';
+import './ViewWorkoutPage.css';
+import { fetchWorkoutSessionDetails, deleteWorkoutSession, saveWorkoutSession, fetchExercises, addNewExercise } from '../../api/api.js';
 
 const ViewWorkoutPage = () => {
   const { athleteID, day, month, year } = useParams();
@@ -199,7 +199,7 @@ const ViewWorkoutPage = () => {
       </div>
 
       {showModal && (
-        <div className="modal-overlay">
+        <div className="modal-overlay-discard">
           <div className="modal-content">
             <p>Are you sure you want to discard changes to this workout session?</p>
             <div className="modal-buttons">

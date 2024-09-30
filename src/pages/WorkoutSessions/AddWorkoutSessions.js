@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
-import WorkoutTable from '../components/WorkoutPage/WorkoutTable';
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
+import WorkoutTable from '../../components/common/WorkoutTable';
 import { FaSave, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
-import '../styles/AddWorkoutSessions.css';
-import { fetchExercises, addNewExercise, saveWorkoutSession } from '../api/api'; // Import the saveWorkoutSession API
+import './AddWorkoutSessions.css';
+import { fetchExercises, addNewExercise, saveWorkoutSession } from '../../api/api'; // Import the saveWorkoutSession API
 
 const AddWorkoutSessions = () => {
   const { athleteID, day, month, year } = useParams();

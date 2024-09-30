@@ -5,7 +5,7 @@ import HomeIcon from '../../assets/Home Icon.png';
 import AthletesIcon from '../../assets/Athletes Icon.png';
 import ChatIcon from '../../assets/Chat Icon.png';
 import AnalyticsIcon from '../../assets/Analytics Icon.png';
-import '../../styles/SideBar.css';
+import './SideBar.css';
 
 
 const SideBar = () => {

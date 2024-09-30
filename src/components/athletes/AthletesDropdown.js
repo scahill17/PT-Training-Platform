@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DownArrow from '../../assets/Down Arrow.png';
 import UserProfile from '../../assets/User Profile.png';
-import '../../styles/AthletesDropdown.css';
+import './AthletesDropdown.css';
 
 const AthletesDropdown = ({ athletes, selectedAthlete, setSelectedAthlete, dropdownOpen, setDropdownOpen }) => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getDaysInMonth } from '../../utils/dateUtils';
-import '../../styles/Calendar.css';
+import './Calendar.css';
 
 const Calendar = ({ date, hoveredDay, setHoveredDay, handleEditSessionClick, handleViewSessionClick, workoutSessions }) => {
   const daysInCurrentMonth = getDaysInMonth(date);

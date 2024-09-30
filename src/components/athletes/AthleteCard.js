@@ -4,7 +4,7 @@ import UserProfile from '../../assets/User Profile.png';
 import CalendarIcon from '../../assets/Calendar.png';
 import AnalyticsIcon from '../../assets/Analytics Icon.png';
 import ChatIcon from '../../assets/Chat Icon.png';
-import '../../styles/AthleteCard.css';
+import './AthleteCard.css';
 
 const AthleteCard = ({ athlete }) => {
   const navigate = useNavigate();

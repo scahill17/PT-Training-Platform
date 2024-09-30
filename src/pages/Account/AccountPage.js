@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
-import '../styles/AccountPage.css';
-import { fetchAthleteDetails, deleteAthlete } from '../api/api';
-import { fetchExercises, deleteExercise } from '../api/api'; // Exercise API functions
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
+import './AccountPage.css';
+import { fetchAthleteDetails, deleteAthlete, fetchExercises, deleteExercise } from '../../api/api';
 
 const AccountPage = () => {
   const [selectedTab, setSelectedTab] = useState('details');

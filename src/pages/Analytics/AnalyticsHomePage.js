@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
 
 const AnalyticsHomePage = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { addAthlete } from '../../api/api';
-import '../../styles/AthleteForm.css'; // Ensure the CSS is imported
+import './AthleteForm.css';
 
 const AthleteForm = ({ onSuccess, onCancel }) => {
   const [formData, setFormData] = useState({

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAthleteDetails } from '../api/api';
-import AthleteCard from '../components/AthletesPage/AthleteCard';
-import AthleteForm from '../components/AthletesPage/AthleteForm';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
-import '../styles/AthletesPage.css'
+import { fetchAthleteDetails } from '../../api/api';
+import AthleteCard from '../../components/athletes/AthleteCard';
+import AthleteForm from '../../components/athletes/AthleteForm';
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
+import './AthletesPage.css'
 
 const Athletes = () => {
   const [athletes, setAthletes] = useState([]);

@@ -106,7 +106,7 @@
     background-color: #c82333;
   }
   
-  .modal-overlay {
+  .modal-overlay-discard {
     position: fixed;
     top: 0;
     left: 0;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
-import '../../styles/WorkoutTable.css';
+import './WorkoutTable.css';
 
 const WorkoutTable = ({ exercise, index, setExercises, exercises }) => {
   const handleTableChange = (setIndex, field, value) => {

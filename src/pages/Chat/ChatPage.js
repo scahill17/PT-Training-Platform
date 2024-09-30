@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
-import '../styles/ChatPage.css';
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
+import './ChatPage.css';
 
 const ChatPage = () => {
   const dummyChats = [

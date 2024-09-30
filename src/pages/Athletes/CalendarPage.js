@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchAthleteDetails, fetchWorkoutSessions } from '../api/api';
-import Calendar from '../components/CalendarPage/Calendar';
-import AthletesDropdown from '../components/Global/AthletesDropdown';
-import NavBar from '../components/Global/NavBar';
-import SideBar from '../components/Global/SideBar';
-import '../styles/CalendarPage.css';
+import { fetchAthleteDetails, fetchWorkoutSessions } from '../../api/api';
+import Calendar from '../../components/calendar/Calendar';
+import AthletesDropdown from '../../components/athletes/AthletesDropdown';
+import NavBar from '../../components/common/NavBar';
+import SideBar from '../../components/common/SideBar';
+import './CalendarPage.css';
 
 const CalendarPage = () => {
   const { athleteId } = useParams();
