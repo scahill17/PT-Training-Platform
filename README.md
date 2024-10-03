@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Personal Trainer Dashboard Web Application
+## Overview
+This is a Personal Trainer Dashboard web application designed to help trainers manage their athletes, view workout trends, and track performance. The application provides a responsive user interface, analytics dashboards, and functionality for managing athletes, workout sessions, and exercise insights.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features for Functionality Criteria
+- Athlete Management:
+Manage athlete profiles. Athletes can be added via the athletes page, and deleted via the accounts page.
+Search for athletes via a responsive search bar.
 
-## Available Scripts
+- Create Workout Programs:
+Workout programs are made by navigating to the athletes calendar page, where sessions can be made for each date.
+There is functionality to view and update existing sesisons, or create new ones.
 
-In the project directory, you can run:
+- Manage Exercise Library:
+New exercises can be added into the database via the workout management screens, where users can select 'new exercise' when selecting a specific exercise.
+Exercises can also be deleted through the accounts page. 
 
-### `npm start`
+- Analytics Dashboard:
+View performance overview and exercise-specific insights.
+Track trends such as total workouts, total weight lifted, and average performance per session.
+Filter data by date and exercise.
+This is connected to the database, but there is no functionality (from this users view) to adjust this data. This is based on user input via the mobile application. If you would like to see an example of how it communicates with the database, select Alex Johnson, with the any date between 2nd October and 15th October, with either Lunges or DB Press as your exercise. This is dummy data inputted for your convenience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Calendar of Scheduled Coaching Sessions:
+Navigating to any athletes calendar (from the dummy data) will show you existing sessions that have been created. You can add a workout session and see how this updates. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Advanced Feature:
+I have used a custom database and a PostgREST API as my advanced feature. The database structure can be located in 'DB Structure.sql'.
+## Technologies Used
+### Frontend:
+- React.js
+- CSS
+### API:
+- PostgREST for RESTful endpoints to interact with the database.
+- Custom API calls to fetch athlete details, performance data, and exercise insights, as well as Post and others.
 
-### `npm test`
+### Database:
+- PostgreSQL with the following key tables (found in DB Structure.sql for convenience):
+  - users: Stores information about all users for both coaches and clients.
+  - athletes: Stores athlete information such as name, age, and fitness goals.
+  - exercises: Stores a list of all exercise usable in the system.
+  - workout_sessions: Tracks workout sessions for each athlete.
+  - workout_details: Tracks specific details of individual session.
+  - workout_sets: Tracks specific sets for individual exercises in workout_details.
+  - exercise_performance: Records performance metrics for each athlete and exercise.
+  - workout_trends: Aggregates workout data to show trends over time.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup Instructions
+1. Install Dependencies
+Ensure you have Node.js and npm installed. Then, install the necessary dependencies by running:  
+npm install
 
-### `npm run build`
+2. Run the Development Server
+To start the development server, run:  
+npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. The app will be available at http://localhost:3000.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Gen AI Disclaimer
+Generative AI has been used consistently throughout this project in an attempt to improve consistency among components, as well as improving readbility through refactoring. It was also used as an aid in quickly debugging errors.
