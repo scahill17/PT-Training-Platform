@@ -6,8 +6,12 @@ import WorkoutTable from '../../components/common/WorkoutTable';
 import { FaSave, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
 import './AddWorkoutSessions.css';
-import { fetchExercises, addNewExercise, saveWorkoutSession } from '../../api/api'; // Import the saveWorkoutSession API
+import { fetchExercises, addNewExercise, saveWorkoutSession } from '../../api/api';
 
+/**
+ * AddWorkoutSessions component - Displays a form for adding and editing workout sessions
+ * Allows adding new exercises, editing sets, reps, and weights, and saving the workout session
+ */
 const AddWorkoutSessions = () => {
   const { athleteID, day, month, year } = useParams();
   const navigate = useNavigate();
@@ -18,13 +22,13 @@ const AddWorkoutSessions = () => {
   const [newExerciseIndexes, setNewExerciseIndexes] = useState([]);
   const [newExerciseName, setNewExerciseName] = useState('');
 
-  // Fetch exercises from the database on mount
+  // Fetch exercises from the database on component mount
   useEffect(() => {
     const loadExercises = async () => {
       try {
         const fetchedExercises = await fetchExercises();
         const exerciseNames = fetchedExercises.map(exercise => exercise.name);
-        setExerciseOptions([...exerciseNames]);  // Exclude 'New Exercise' initially
+        setExerciseOptions([...exerciseNames]);
       } catch (error) {
         console.error('Error fetching exercises:', error);
       }
@@ -33,14 +37,17 @@ const AddWorkoutSessions = () => {
     loadExercises();
   }, []);
 
+  // Navigate back to the athlete's calendar
   const handleBackClick = () => {
     navigate(`/athlete/${athleteID}/calendar`);
   };
 
+  // Add a new exercise block to the session
   const handleAddExercise = () => {
     setExercises([...exercises, { name: '', sets: 3, instructions: '', reps: ['', '', ''], weight: ['', '', ''] }]);
   };
 
+  // Update the selected exercise or add a new one
   const handleExerciseChange = (index, value) => {
     const updatedExercises = [...exercises];
     updatedExercises[index].name = value;
@@ -53,28 +60,29 @@ const AddWorkoutSessions = () => {
     }
   };
 
-  // Handles text input for exercise instructions
+  // Update the exercise instructions
   const handleInstructionsChange = (index, value) => {
     const updatedExercises = [...exercises];
     updatedExercises[index].instructions = value;
     setExercises(updatedExercises);
   };
 
-  // Handles adding new exercise to both the dropdown and database
+  // Confirm adding a new exercise and update the dropdown list
   const handleAddNewExerciseConfirm = async (index) => {
     if (newExerciseName.trim()) {
       try {
-        await addNewExercise(newExerciseName); // Call to add exercise to DB
-        setExerciseOptions([...exerciseOptions, newExerciseName]); // Add new exercise before "New Exercise"
-        handleExerciseChange(index, newExerciseName); // Update selected exercise
-        setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index)); // Remove from new exercise list
-        setNewExerciseName(''); // Clear input field
+        await addNewExercise(newExerciseName); // Add to the database
+        setExerciseOptions([...exerciseOptions, newExerciseName]); // Update dropdown
+        handleExerciseChange(index, newExerciseName); // Set the new exercise
+        setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index));
+        setNewExerciseName(''); // Clear the input
       } catch (error) {
         console.error('Error adding new exercise:', error);
       }
     }
   };
 
+  // Cancel adding a new exercise
   const handleCancelNewExercise = (index) => {
     const updatedExercises = [...exercises];
     updatedExercises[index].name = '';
@@ -83,39 +91,39 @@ const AddWorkoutSessions = () => {
     setNewExerciseName('');
   };
 
+  // Open the discard confirmation modal
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+
+  // Confirm discarding the workout session
   const confirmDiscard = () => {
     setShowModal(false);
     handleBackClick();
   };
 
+  // Remove an exercise from the session
   const handleDeleteExercise = (index) => {
     const updatedExercises = exercises.filter((_, i) => i !== index);
     setExercises(updatedExercises);
   };
 
+  // Save the workout session
   const handleSaveWorkout = async () => {
     try {
-      // Prepare data for the workout session
       const workoutSessionData = {
         athlete_id: athleteID,
-        date: `${year}-${month}-${day}`, // Format the date properly
+        date: `${year}-${month}-${day}`,
         exercises: exercises.map((exercise) => ({
           name: exercise.name,
           instructions: exercise.instructions,
           sets: exercise.sets,
           reps: exercise.reps,
-          weight: exercise.weight
-        }))
+          weight: exercise.weight,
+        })),
       };
 
-      console.log("parsed athleteID: ", workoutSessionData.athlete_id);
-      console.log("parsed date: ", workoutSessionData.date);
-      // Send workout session data to the API to save in the database
       await saveWorkoutSession(workoutSessionData);
-      console.log('Workout session saved successfully');
-      alert('Workout session updated successfully!');
+      alert('Workout session saved successfully!');
       navigate(`/athlete/${athleteID}/calendar`);
     } catch (error) {
       console.error('Error saving workout session:', error);
@@ -176,7 +184,6 @@ const AddWorkoutSessions = () => {
                           {option}
                         </option>
                       ))}
-                      {/* Always show "New Exercise" at the bottom and in bold */}
                       <option value="New Exercise" style={{ fontWeight: 'bold' }}>
                         New Exercise
                       </option>

@@ -1,121 +1,136 @@
+/* Main container for the account page */
 .account-page {
-    display: flex;
-    flex-direction: column;
-    margin-left: 250px; 
-    margin-top: 80px; 
-    padding: 30px; 
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .account-content {
-    display: flex;
-    width: 100%;
-    padding: 30px; 
-  }
-  
-  .account-tabs {
-    width: 220px; 
-  }
-  
-  .account-tabs ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .account-tabs li {
-    padding: 18px 15px;
-    font-size: 16px;
-    color: #333;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .account-tabs li.active {
-    background-color: #e6e6e6;
-    font-weight: bold;
-  }
-  
-  .tab-content {
-    flex-grow: 1;
-    padding-left: 50px; 
-    padding-right: 20px;
-    padding-top: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .details-form {
-    max-width: 700px;
-    padding: 40px;
-  }
-  
-  .form-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px; 
-  }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 10px ;
-  }
-  
-  .input-group label {
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .input-group input {
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-  }
-  
-  .input-group input:focus {
-    border-color: #F2AE30;
-    box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
-  }
-  
-  .manage-athletes-accounts {
-    max-width: 700px;
-    padding: 20px;
-  }
-  
-  .manage-athlete-list {
-    list-style: none;
-    padding: 30px 10px;
-  }
-  
-  .manage-athlete-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  .manage-athlete-item:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .delete-btn {
-    background-color: #F2AE30;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .delete-btn:hover {
-    background-color: #D9952D;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px; /* Offset for sidebar */
+  margin-top: 80px; /* Offset for navbar */
+  padding: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Container for the account content */
+.account-content {
+  display: flex;
+  width: 100%;
+  padding: 30px;
+}
+
+/* Styling for the tab navigation */
+.account-tabs {
+  width: 220px;
+}
+
+.account-tabs ul {
+  list-style: none;
+  padding: 0;
+}
+
+.account-tabs li {
+  padding: 18px 15px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Styling for the active tab */
+.account-tabs li.active {
+  background-color: #e6e6e6;
+  font-weight: bold;
+}
+
+/* Container for the tab content */
+.tab-content {
+  flex-grow: 1;
+  padding-left: 50px;
+  padding-right: 20px;
+  padding-top: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Form for displaying personal details */
+.details-form {
+  max-width: 700px;
+  padding: 40px;
+}
+
+/* Grid layout for form sections */
+.form-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* Input field styling */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.input-group input {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* Focus effect for input fields */
+.input-group input:focus {
+  border-color: #F2AE30;
+  box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
+}
+
+/* Container for managing athletes */
+.manage-athletes-accounts {
+  max-width: 700px;
+  padding: 20px;
+}
+
+/* List of athletes or exercises */
+.manage-athlete-list {
+  list-style: none;
+  padding: 30px 10px;
+}
+
+/* Styling for each athlete or exercise item */
+.manage-athlete-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for athlete or exercise item */
+.manage-athlete-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Delete button styling */
+.delete-btn {
+  background-color: #F2AE30;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for delete button */
+.delete-btn:hover {
+  background-color: #D9952D;
+}

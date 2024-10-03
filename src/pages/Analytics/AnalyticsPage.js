@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NavBar from '../../components/common/NavBar';
 import SideBar from '../../components/common/SideBar';
 import { fetchAthleteDetails } from '../../api/api';
 import PerformanceOverview from '../../components/analytics/PerformanceOverview';
 import ExerciseInsights from '../../components/analytics/ExerciseInsights';
-import AthleteList from '../../components/common/AthleteList'; // Import the new AthleteList component
+import AthleteList from '../../components/common/AthleteList';
 import './AnalyticsPage.css';
 
+/**
+ * AnalyticsDashboard component - Displays the analytics dashboard for selected athletes
+ */
 const AnalyticsDashboard = () => {
   const [athletes, setAthletes] = useState([]);
   const [selectedAthlete, setSelectedAthlete] = useState(null);
   const { athleteId } = useParams();
-  const navigate = useNavigate();
 
+  // Load athlete details when the component mounts and if athleteId changes
   useEffect(() => {
     const loadAthletes = async () => {
       try {
@@ -22,7 +25,9 @@ const AnalyticsDashboard = () => {
 
         // Automatically set the selected athlete based on URL param
         if (athleteId) {
-          const foundAthlete = athleteData.find((athlete) => athlete.athlete_id === parseInt(athleteId));
+          const foundAthlete = athleteData.find(
+            (athlete) => athlete.athlete_id === parseInt(athleteId)
+          );
           if (foundAthlete) setSelectedAthlete(foundAthlete);
         }
       } catch (error) {

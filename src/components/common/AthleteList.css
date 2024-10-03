@@ -1,4 +1,4 @@
-/* Athlete list on the left side */
+/* Container for the athlete list on the left side */
 .athlete-list {
     width: 350px;
     background-color: #f9f9f9;
@@ -26,7 +26,16 @@
     background-color: #e6e6e6;
 }
 
+/* Styling for the currently selected athlete */
 .athlete-item-card.active {
     background-color: #F2AE30;
     color: white;
+}
+
+/* Styling for the message displayed when no athletes are found */
+.athlete-list-items div {
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+    text-align: center;
+    padding: 10px;
 }

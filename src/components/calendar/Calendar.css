@@ -3,8 +3,8 @@
 /* Calendar Grid Layout */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); 
-  grid-auto-rows: minmax(100px, auto); 
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for each day of the week */
+  grid-auto-rows: minmax(100px, auto); /* Dynamic row height */
   grid-gap: 0px;
   border-bottom: 1px solid #dddddd;
   padding-left: 20px;
@@ -13,32 +13,32 @@
 /* Styling for Each Calendar Day */
 .calendar-day {
   display: flex;
-  flex-direction: column; /* Changed to column layout for date and button */
-  justify-content: flex-start; 
-  align-items: flex-start; 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: #333333;
-  border-top: 1px solid #dddddd; 
-  transition: background-color 0.3s ease; 
+  border-top: 1px solid #dddddd;
+  transition: background-color 0.3s ease;
   position: relative;
   height: 100px;
 }
 
 /* Hover Effect for Calendar Day */
 .calendar-day:hover {
-  background-color: #e6e6e6; 
+  background-color: #e6e6e6; /* Slightly lighter background on hover */
 }
 
-/* Styling for Empty Days */
+/* Styling for Empty Days (No Workout) */
 .calendar-day.empty {
-  background-color: #f9f9f9; 
+  background-color: #f9f9f9;
 }
 
-/* Styling for Days in the Previous/Next Month */
+/* Styling for Days from Previous/Next Month */
 .calendar-day.trailing {
-  color: #aaaaaa; 
+  color: #aaaaaa; /* Gray out trailing days */
 }
 
 /* Date Number Display */
@@ -48,19 +48,19 @@
   position: relative;
 }
 
-/* Container for Date and Dot */
+/* Container for Date and Dot Indicator */
 .date-dot-container {
   display: flex;
   align-items: center;
-  gap: 6px; /* Adds space between the date and the dot */
+  gap: 6px; /* Space between date and workout dot */
 }
 
-/* Common Button Styling for View and Create Session */
+/* Workout Session Button Styling */
 .session-button {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background-color: #F2AE30;
+  background-color: #F2AE30; /* Theme color for button */
   color: white;
   border: none;
   padding: 8px 12px;
@@ -68,24 +68,23 @@
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 /* Hover Effect for Buttons */
 .session-button:hover {
-  background-color: #d99427;
+  background-color: #d99427; /* Darker hover color */
 }
 
-/* Hover: Show Edit/Create Session Button */
+/* Show Edit/Create Session Button on Hover */
 .calendar-day:hover .session-button {
-  display: block; 
-  align-self: center; 
+  display: block;
 }
 
-/* Dot for Existing Workout Sessions */
+/* Dot Indicator for Existing Workout Sessions */
 .workout-dot {
-  width: 8px; 
+  width: 8px;
   height: 8px;
-  background-color: #F2AE30; 
+  background-color: #F2AE30; /* Consistent theme color */
   border-radius: 50%;
-  align-self: center;
 }

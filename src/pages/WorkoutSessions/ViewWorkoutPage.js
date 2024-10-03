@@ -3,22 +3,26 @@ import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/common/NavBar';
 import SideBar from '../../components/common/SideBar';
 import WorkoutTable from '../../components/common/WorkoutTable';
-import { FaSave, FaTrash, FaPlus, FaCheck, FaTimes } from 'react-icons/fa'; 
+import { FaSave, FaTrash, FaPlus, FaCheck, FaTimes } from 'react-icons/fa';
 import { IoIosArrowBack } from 'react-icons/io';
 import './ViewWorkoutPage.css';
-import { fetchWorkoutSessionDetails, deleteWorkoutSession, saveWorkoutSession, fetchExercises, addNewExercise } from '../../api/api.js';
+import { fetchWorkoutSessionDetails, deleteWorkoutSession, saveWorkoutSession, fetchExercises, addNewExercise } from '../../api/api';
 
+/**
+ * ViewWorkoutPage component - Displays a workout session for a specific date and athlete.
+ * Allows viewing, editing, adding exercises, and saving the session.
+ */
 const ViewWorkoutPage = () => {
   const { athleteID, day, month, year } = useParams();
   const navigate = useNavigate();
 
   const [exercises, setExercises] = useState([]);
-  const [exerciseOptions, setExerciseOptions] = useState([]);  
-  const [newExerciseIndexes, setNewExerciseIndexes] = useState([]);  
+  const [exerciseOptions, setExerciseOptions] = useState([]);
+  const [newExerciseIndexes, setNewExerciseIndexes] = useState([]);
   const [newExerciseName, setNewExerciseName] = useState('');
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch workout session and exercise options on load
+  // Fetch workout session details and exercise options on mount
   useEffect(() => {
     const loadWorkoutSession = async () => {
       try {
@@ -29,7 +33,7 @@ const ViewWorkoutPage = () => {
 
         const fetchedExercises = await fetchExercises();
         const exerciseNames = fetchedExercises.map(exercise => exercise.name);
-        setExerciseOptions(exerciseNames);  
+        setExerciseOptions(exerciseNames);
       } catch (error) {
         console.error('Error fetching workout session or exercises:', error);
       }
@@ -38,20 +42,23 @@ const ViewWorkoutPage = () => {
     loadWorkoutSession();
   }, [athleteID, day, month, year]);
 
+  // Navigate back to the athlete's calendar
   const handleBackClick = () => {
     navigate(`/athlete/${athleteID}/calendar`);
   };
 
-  // Function to handle the deletion of the current workout session and saving the new one
+  // Save the updated workout session
   const handleSaveWorkout = async () => {
     try {
-      // Delete the existing session and its related data
-      await deleteWorkoutSession(athleteID, `${year}-${month}-${day}`);
-      
-      // Save a new workout session (this function handles creating workout details and sets)
-      const newSessionData = { athlete_id: athleteID, date: `${year}-${month}-${day}`, exercises };
-      await saveWorkoutSession(newSessionData);
-      
+      await deleteWorkoutSession(athleteID, `${year}-${month}-${day}`); // Delete the existing session
+
+      const newSessionData = {
+        athlete_id: athleteID,
+        date: `${year}-${month}-${day}`,
+        exercises,
+      };
+
+      await saveWorkoutSession(newSessionData); // Save the new session
       alert('Workout session updated successfully!');
       navigate(`/athlete/${athleteID}/calendar`);
     } catch (error) {
@@ -59,15 +66,18 @@ const ViewWorkoutPage = () => {
     }
   };
 
+  // Add a new exercise to the session
   const handleAddExercise = () => {
     setExercises([...exercises, { name: '', sets: 3, instructions: '', reps: ['', '', ''], weight: ['', '', ''] }]);
   };
 
+  // Delete an exercise from the session
   const handleDeleteExercise = (index) => {
     const updatedExercises = exercises.filter((_, i) => i !== index);
     setExercises(updatedExercises);
   };
 
+  // Handle changes to the selected exercise
   const handleExerciseChange = (index, value) => {
     const updatedExercises = [...exercises];
     updatedExercises[index].name = value;
@@ -76,29 +86,31 @@ const ViewWorkoutPage = () => {
     if (value === 'New Exercise') {
       setNewExerciseIndexes([...newExerciseIndexes, index]);
     } else {
-      setNewExerciseIndexes(newExerciseIndexes.filter((i) => i !== index));
+      setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index));
     }
   };
 
+  // Confirm and add a new exercise to the list
   const handleAddNewExerciseConfirm = async (index) => {
     if (newExerciseName.trim()) {
       try {
-        await addNewExercise(newExerciseName);
-        setExerciseOptions([...exerciseOptions, newExerciseName]); 
-        handleExerciseChange(index, newExerciseName);
-        setNewExerciseIndexes(newExerciseIndexes.filter((i) => i !== index));
-        setNewExerciseName('');
+        await addNewExercise(newExerciseName); // Add new exercise to the database
+        setExerciseOptions([...exerciseOptions, newExerciseName]); // Update dropdown options
+        handleExerciseChange(index, newExerciseName); // Select the new exercise
+        setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index));
+        setNewExerciseName(''); // Clear input
       } catch (error) {
         console.error('Error adding new exercise:', error);
       }
     }
   };
 
+  // Cancel adding a new exercise
   const handleCancelNewExercise = (index) => {
     const updatedExercises = [...exercises];
     updatedExercises[index].name = '';
     setExercises(updatedExercises);
-    setNewExerciseIndexes(newExerciseIndexes.filter((i) => i !== index));
+    setNewExerciseIndexes(newExerciseIndexes.filter(i => i !== index));
     setNewExerciseName('');
   };
 
@@ -164,7 +176,7 @@ const ViewWorkoutPage = () => {
                     <textarea
                       className="exercise-instructions"
                       placeholder="Exercise Instructions"
-                      value={exercise.instructions || ''} 
+                      value={exercise.instructions || ''}
                       onChange={(e) => {
                         const updatedExercises = [...exercises];
                         updatedExercises[index].instructions = e.target.value;

@@ -7,7 +7,9 @@ import ChatIcon from '../../assets/Chat Icon.png';
 import AnalyticsIcon from '../../assets/Analytics Icon.png';
 import './SideBar.css';
 
-
+/**
+ * SideBar component - Displays the sidebar with navigation links and icons
+ */
 const SideBar = () => {
   const location = useLocation();
   const isAthletePage = location.pathname.includes('/athlete');

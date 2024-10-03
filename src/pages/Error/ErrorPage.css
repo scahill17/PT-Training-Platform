@@ -1,37 +1,41 @@
+/* Main container for the error page */
 .error-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  .error-title {
-    font-size: 120px;
-    font-weight: bold;
-    color: #f27405; /* Bright color for the 404 */
-  }
-  
-  .error-message {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .go-home-button {
-    padding: 12px 36px;
-    font-size: 18px;
-    background-color: #f2ae30;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .go-home-button:hover {
-    background-color: #d99427;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full page height */
+  background-color: #f2f2f2; /* Light grey background */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Error code styling */
+.error-title {
+  font-size: 120px;
+  font-weight: bold;
+  color: #f27405; /* Bright color for the 404 error code */
+}
+
+/* Error message styling */
+.error-message {
+  font-size: 24px;
+  color: #333; /* Dark grey for the message text */
+  margin-bottom: 20px; /* Spacing between the message and the button */
+}
+
+/* Button styling */
+.go-home-button {
+  padding: 12px 36px;
+  font-size: 18px;
+  background-color: #f2ae30; /* Primary button color */
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover effect for the button */
+.go-home-button:hover {
+  background-color: #d99427; /* Darker color on hover */
+}

@@ -4,6 +4,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { fetchWorkoutTrends } from '../../api/api';
 import './PerformanceOverview.css';
 
+/**
+ * PerformanceOverview Component
+ * Displays the performance overview for an athlete.
+ * Fetches workout trends and allows users to select a date to view weekly or monthly performance data.
+ *
+ * @param {number} athleteId - The ID of the athlete for which to fetch performance data.
+ */
 const PerformanceOverview = ({ athleteId }) => {
   const [workoutTrends, setWorkoutTrends] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -25,6 +32,11 @@ const PerformanceOverview = ({ athleteId }) => {
     loadWorkoutTrends();
   }, [athleteId]);
 
+  /**
+   * Filter the workout trends to return the most recent trend within 7 days of the selected date.
+   *
+   * @returns {object|null} The filtered workout trend or null if no trend matches the criteria.
+   */
   const getFilteredTrend = () => {
     if (!selectedDate || workoutTrends.length === 0) return null;
 
@@ -32,14 +44,14 @@ const PerformanceOverview = ({ athleteId }) => {
     const oneWeekBefore = new Date(selectedDateObj);
     oneWeekBefore.setDate(selectedDateObj.getDate() - 7);
 
-    // Find the most recent trend within 7 days before the selected date
+    // Filter workout trends within the 7-day window of the selected date
     const filteredTrends = workoutTrends.filter((trend) => {
       const trendDate = new Date(trend.trend_period);
       return trendDate >= oneWeekBefore && trendDate <= selectedDateObj;
     });
 
+    // Sort by most recent date and return the first trend
     if (filteredTrends.length > 0) {
-      // Sort trends by date in descending order to get the most recent one
       filteredTrends.sort((a, b) => new Date(b.trend_period) - new Date(a.trend_period));
       return filteredTrends[0];
     }
@@ -49,6 +61,7 @@ const PerformanceOverview = ({ athleteId }) => {
 
   const filteredTrend = getFilteredTrend();
 
+  // Loading and error handling
   if (loading) {
     return <p>Loading workout trends...</p>;
   }
@@ -61,7 +74,7 @@ const PerformanceOverview = ({ athleteId }) => {
     <div className="performance-overview">
       <h2><strong>Performance Overview</strong></h2>
 
-      {/* Calendar component to pick a date */}
+      {/* Date picker for selecting a date */}
       <div className="date-picker-container">
         <label htmlFor="date-picker">Select Date: </label>
         <DatePicker
@@ -71,6 +84,7 @@ const PerformanceOverview = ({ athleteId }) => {
         />
       </div>
 
+      {/* Display the filtered trend data */}
       {filteredTrend ? (
         <div className="trend-section">
           <h2>{filteredTrend.trend_type === 'weekly' ? 'Weekly Performance' : 'Monthly Performance'}</h2>

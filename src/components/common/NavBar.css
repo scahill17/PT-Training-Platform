@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
+/* Universal styles for padding and box-sizing */
 * {
   box-sizing: border-box; 
   margin: 0;
@@ -9,29 +10,32 @@
 html, body {
   height: 100%;
   width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* Navigation bar styles */
 .navbar {
-  background-color: #2c2c2c; 
+  background-color: #2c2c2c; /* Dark background */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  height: 70px; 
+  height: 70px; /* Consistent height */
   position: fixed;
   top: 0;
-  left: 250px; 
-  width: calc(100% - 250px); 
+  left: 250px; /* Leaves space for sidebar */
+  width: calc(100% - 250px); /* Fills the remaining space after sidebar */
   font-family: 'Montserrat', sans-serif; 
-  z-index: 999; 
+  z-index: 999; /* Keeps navbar above other elements */
 }
 
+/* Text in the navigation bar */
 .navbar-text {
   color: white;
   font-size: 18px;
 }
 
+/* Profile section in the navigation bar */
 .navbar-profile {
   position: relative;
   display: flex;
@@ -43,34 +47,39 @@ html, body {
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect on profile */
 .navbar-profile:hover {
-  background-color: #4c4c4c; 
+  background-color: #4c4c4c; /* Darken background on hover */
   border-radius: 5px;
   width: 100px;
 }
 
+/* Profile user icon */
 .user-icon {
   width: 40px;
   height: 40px;
   margin-right: 10px;
 }
 
+/* Dropdown arrow icon */
 .dropdown-arrow {
   width: 20px; 
   height: 20px;
   margin-left: 5px;
 }
 
+/* Dropdown menu styling */
 .dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: #2c2c2c;
+  background-color: #2c2c2c; /* Matches navbar color */
   width: 160px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  z-index: 1000; /* Ensures dropdown stays above other content */
 }
 
+/* Individual items in the dropdown */
 .dropdown-item {
   display: flex; 
   align-items: center; 
@@ -82,6 +91,7 @@ html, body {
   font-size: 14px; 
 }
 
+/* Icon for each dropdown item */
 .dropdown-icon {
   width: 20px; 
   height: 20px;

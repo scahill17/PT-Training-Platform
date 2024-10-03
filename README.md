@@ -19,7 +19,7 @@ Exercises can also be deleted through the accounts page.
 View performance overview and exercise-specific insights.
 Track trends such as total workouts, total weight lifted, and average performance per session.
 Filter data by date and exercise.
-This is connected to the database, but there is no functionality (from this users view) to adjust this data. This is based on user input via the mobile application. If you would like to see an example of how it communicates with the database, select Alex Johnson, with the any date between 2nd October and 15th October, with either Lunges or DB Press as your exercise. This is dummy data inputted for your convenience.
+This is connected to the database, but there is no functionality (from this users view) to adjust this data. This is based on user input via the mobile application. If you would like to see an example of how it communicates with the database, select Alex Johnson, with the any date between 2nd October and 15th October, with either Lunges or DB Press as your exercise. This is dummy data inputted for your convenience. I opted to display metrics in tabular form over data visualisation simply because there wasn't enough information being parsed into the database for these visuals to be useful.
 
 - Calendar of Scheduled Coaching Sessions:
 Navigating to any athletes calendar (from the dummy data) will show you existing sessions that have been created. You can add a workout session and see how this updates. 

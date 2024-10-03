@@ -3,15 +3,21 @@ import { Link, useLocation } from 'react-router-dom';
 import UserProfile from '../../assets/User Profile.png';
 import DownArrow from '../../assets/Down Arrow.png';
 import LogoutIcon from '../../assets/Logout Icon.png';
-import './NavBar.css'; // Updated CSS
+import './NavBar.css';
 
+/**
+ * NavBar component - Displays the navigation bar with a user profile and dropdown menu
+ */
 const NavBar = () => {
   const location = useLocation();
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  /**
+   * Returns a welcome message or navigation text based on the current route
+   */
   const getWelcomeMessage = () => {
     const path = location.pathname;
-  
+
     if (path.startsWith('/athletes') || path.startsWith('/athlete/')) {
       return 'My Athletes';
     } else if (path.startsWith('/analytics')) {
@@ -24,8 +30,10 @@ const NavBar = () => {
       return 'Welcome back, Coach';
     }
   };
-  
 
+  /**
+   * Toggles the visibility of the dropdown menu
+   */
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };

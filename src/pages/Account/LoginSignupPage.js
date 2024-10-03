@@ -2,14 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginSignupPage.css';
 
+/**
+ * LoginSignupPage component - Displays a form for either logging in or signing up based on user interaction
+ */
 const LoginSignupPage = () => {
-  const [isLogin, setIsLogin] = useState(true); 
+  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and signup forms
   const navigate = useNavigate();
 
+  /**
+   * Toggles between login and signup forms
+   */
   const handleToggle = () => {
-    setIsLogin(!isLogin); 
+    setIsLogin(!isLogin);
   };
 
+  /**
+   * Handles form submission and redirects to the home page
+   * @param {Object} e - The form submission event
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate('/home');
@@ -20,13 +30,12 @@ const LoginSignupPage = () => {
       <div className="form-container">
         <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
         <form onSubmit={handleSubmit}>
+          {/* Only show name input for signup */}
           {!isLogin && (
-            <>
-              <div className="input-container">
-                <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="John Doe" required />
-              </div>
-            </>
+            <div className="input-container">
+              <label htmlFor="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
           )}
           <div className="input-container">
             <label htmlFor="email">Email</label>

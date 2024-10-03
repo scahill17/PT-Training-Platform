@@ -1,7 +1,8 @@
+/* Page container for athletes */
 .athletes-page {
   padding: 20px;
-  margin-left: 250px;
-  margin-top: 80px;
+  margin-left: 250px; /* Offset for the sidebar */
+  margin-top: 80px; /* Offset for the navbar */
 }
 
 /* Header container for search and button */
@@ -13,8 +14,8 @@
 }
 
 .search-box-wrapper {
-  flex-basis: 300px; /* Define the fixed width for the search box */
-  margin-right: 20px; /* Space between the search box and the button */
+  flex-basis: 300px; /* Fixed width for the search box */
+  margin-right: 20px; /* Space between search box and button */
 }
 
 /* Button for adding an athlete */
@@ -34,13 +35,13 @@
 }
 
 .add-athlete-button:hover {
-  background-color: #d49b29;
+  background-color: #d49b29; /* Hover effect for add button */
 }
 
 /* Grid layout for athlete cards */
 .athletes-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* Four columns grid layout */
   gap: 40px;
   justify-items: stretch;
 }
@@ -55,5 +56,4 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 0;
 }

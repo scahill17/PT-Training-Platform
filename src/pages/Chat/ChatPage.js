@@ -4,19 +4,52 @@ import SideBar from '../../components/common/SideBar';
 import SearchBox from '../../components/common/SearchBox'; // Importing the SearchBox component
 import './ChatPage.css';
 
+/**
+ * ChatPage component - Displays a chat interface where users can search, select, and chat with contacts.
+ */
 const ChatPage = () => {
   const dummyChats = [
-    { id: 1, name: 'John Doe', messages: ['This is my chat page.', 'No there is no API for storing conversations.', 'No this isnt functional at all.', 'Was I being lazy?', 'Perhaps', 'But it aint in the criteriaaa', 'And I still gave you a pretty, albeit static, page', 'The message box is functional so feel free to chat to yourself.'] },
-    { id: 2, name: 'Jane Smith', messages: ['When is the next session?', 'You have a calendar for a reason, are you dumb?'] },
-    { id: 3, name: 'Chris Evans', messages: ['Can we reschedule?', 'Why, did you decide to have a big night out last night and now you cant keep up with your commitments?', 'No, its just a bit awkward since we broke up yesterday...', 'Ohhhh why dont you just run to your new boyfriend, he can train you cant he?', 'Fine, I may do just that, hes better than you anyways', 'Fine', 'Fine', 'Bye','Cry harder'] }
+    {
+      id: 1, 
+      name: 'John Doe', 
+      messages: [
+        'This is my chat page.', 
+        'No there is no API for storing conversations.', 
+        'No this isn\'t functional at all.', 
+        'Was I being lazy?', 
+        'Perhaps', 
+        'But it ain\'t in the criteriaaa', 
+        'And I still gave you a pretty, albeit static, page', 
+        'The message box is functional so feel free to chat to yourself.'
+      ]
+    },
+    {
+      id: 2, 
+      name: 'Jane Smith', 
+      messages: [
+        'When is the next session?', 
+        'You have a calendar for a reason, are you dumb?'
+      ]
+    },
+    {
+      id: 3, 
+      name: 'Chris Evans', 
+      messages: [
+        'Can we reschedule?', 
+        'Why, did you decide to have a big night out?', 
+        'No, it\'s just awkward since we broke up yesterday...', 
+        'Ohhh, why don\'t you just run to your new boyfriend?', 
+        'Fine', 'Fine', 'Bye', 'Cry harder'
+      ]
+    }
   ];
 
-  const [selectedChat, setSelectedChat] = useState(dummyChats[0]);
+  const [selectedChat, setSelectedChat] = useState(dummyChats[0]);  // Default selected chat
   const [searchQuery, setSearchQuery] = useState('');
   const [messageInput, setMessageInput] = useState('');
-  const messagesEndRef = useRef(null); // Ref to scroll to the bottom
+  const messagesEndRef = useRef(null);  // Ref to scroll to the bottom of messages
 
-  // Auto-scroll to bottom when new messages are sent
+  // Scroll to bottom whenever a new message is sent
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -28,13 +61,16 @@ const ChatPage = () => {
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Handle sending a message (either via button or "Enter" key)
+  /**
+   * Handle sending a new message
+   * @param {Object} e - The event object from the form submission
+   */
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (messageInput.trim() !== '') {
       const updatedMessages = [...selectedChat.messages, messageInput];
       setSelectedChat({ ...selectedChat, messages: updatedMessages });
-      setMessageInput(''); // Clear input field
+      setMessageInput(''); // Clear the input after sending
     }
   };
 
@@ -44,12 +80,12 @@ const ChatPage = () => {
       <NavBar />
 
       <div className="chat-container">
-        {/* Search and Chat List */}
+        {/* Chat Sidebar */}
         <div className="chat-sidebar">
           <SearchBox
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            placeholder="Search user" // Using SearchBox component
+            placeholder="Search user"
           />
           <div className="chat-list">
             {filteredChats.map(chat => (
@@ -75,7 +111,7 @@ const ChatPage = () => {
                 {message}
               </div>
             ))}
-            <div ref={messagesEndRef} /> {/* Scroll to this element */}
+            <div ref={messagesEndRef} />  {/* Ensures auto-scroll to bottom */}
           </div>
           <form className="chat-input-container" onSubmit={handleSendMessage}>
             <input

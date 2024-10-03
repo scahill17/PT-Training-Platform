@@ -1,115 +1,115 @@
 /* Center the form on the page */
 .login-signup-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f5f5f5; /* Light background color */
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  /* Form container styling */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5f5f5; /* Light background color */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Form container styling */
+.form-container {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 400px;
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Input fields */
+.input-container {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 14px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+}
+
+/* Focus effect for input fields */
+.input-container input:focus {
+  border-color: #F2AE30; /* Add focus color to match the buttons */
+  box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
+}
+
+/* Submit button styling */
+.submit-btn {
+  width: 100%;
+  background-color: #F2AE30;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #D9952D;
+}
+
+/* Toggle button styling */
+.toggle-section {
+  margin-top: 20px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #F2AE30;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle-btn:hover {
+  color: #D9952D;
+}
+
+.toggle-section p {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
   .form-container {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 400px;
-    text-align: center;
-  }
-  
-  .form-container h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  /* Input fields */
-  .input-container {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .input-container label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-    font-size: 14px;
-  }
-  
-  .input-container input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
-    outline: none;
-  }
-  
-  .input-container input:focus {
-    border-color: #F2AE30; /* Add focus color to match the buttons */
-    box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
-  }
-  
-  /* Submit button */
-  .submit-btn {
-    width: 100%;
-    background-color: #F2AE30;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-btn:hover {
-    background-color: #D9952D;
-  }
-  
-  /* Toggle button */
-  .toggle-section {
-    margin-top: 20px;
-  }
-  
-  .toggle-btn {
-    background: none;
-    border: none;
-    color: #F2AE30;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .toggle-btn:hover {
-    color: #D9952D;
-  }
-  
-  .toggle-section p {
-    margin-bottom: 10px;
-    color: #666;
-  }
-  
-  /* Responsive for smaller screens */
-  @media (max-width: 600px) {
-    .form-container {
       width: 90%;
       padding: 20px;
-    }
-  
-    .submit-btn {
-      font-size: 14px;
-    }
-  
-    .input-container input {
-      font-size: 12px;
-    }
-  
-    .form-container h2 {
-      font-size: 24px;
-    }
   }
-  
+
+  .submit-btn {
+      font-size: 14px;
+  }
+
+  .input-container input {
+      font-size: 12px;
+  }
+
+  .form-container h2 {
+      font-size: 24px;
+  }
+}

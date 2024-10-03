@@ -2,15 +2,15 @@
 .analytics-dashboard-page {
   display: flex;
   font-family: 'Montserrat', sans-serif;
-  margin-left: 260px; /* Account for the SideBar */
-  margin-top: 80px; /* Account for the NavBar */
+  margin-left: 260px; /* Offset for the SideBar */
+  margin-top: 80px; /* Offset for the NavBar */
   overflow: hidden; /* Prevent scrolling */
 }
 
 /* Main container that holds both the athlete list and dashboard */
 .dashboard-container {
   display: flex;
-  width: 100%; /* Account for sidebar */
+  width: 100%; /* Ensures the container fills the available width */
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
@@ -26,7 +26,7 @@
   flex-direction: column;
   height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  overflow-y: auto; /* Scroll athlete list if it overflows */
 }
 
 /* Search bar for filtering athletes */
@@ -52,11 +52,11 @@
 }
 
 .athlete-item-card:hover {
-  background-color: #e6e6e6;
+  background-color: #e6e6e6; /* Slight hover effect */
 }
 
 .athlete-item-card.active {
-  background-color: #F2AE30;
+  background-color: #F2AE30; /* Active athlete color */
   color: white;
 }
 
@@ -73,7 +73,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Subcontainers inside the dashboard */
+/* Container for content blocks within the dashboard */
 .dashboard-content-containers {
   margin-bottom: 20px;
 }

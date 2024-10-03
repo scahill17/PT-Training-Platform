@@ -4,41 +4,66 @@ import SideBar from '../../components/common/SideBar';
 import './AccountPage.css';
 import { fetchAthleteDetails, deleteAthlete, fetchExercises, deleteExercise } from '../../api/api';
 
+/**
+ * AccountPage component - Displays the account management page for users to view details, manage athletes, and manage exercises
+ */
 const AccountPage = () => {
   const [selectedTab, setSelectedTab] = useState('details');
   const [athletes, setAthletes] = useState([]);
   const [exercises, setExercises] = useState([]); // State for exercises
+
   const userData = {
     name: 'Anthony Longhurst',
     email: 'anthony.longhurst@example.com',
   };
 
+  // Load athlete details when component mounts
   useEffect(() => {
     const loadAthletes = async () => {
-      const data = await fetchAthleteDetails();
-      setAthletes(data);
+      try {
+        const data = await fetchAthleteDetails();
+        setAthletes(data);
+      } catch (error) {
+        console.error('Failed to load athletes', error);
+      }
     };
     loadAthletes();
   }, []);
 
+  // Load exercises when component mounts
   useEffect(() => {
     const loadExercises = async () => {
-      const data = await fetchExercises();
-      setExercises(data);
+      try {
+        const data = await fetchExercises();
+        setExercises(data);
+      } catch (error) {
+        console.error('Failed to load exercises', error);
+      }
     };
     loadExercises();
   }, []);
 
+  // Handle tab switching for different sections
   const handleTabSwitch = (tab) => setSelectedTab(tab);
 
+  // Handle deleting an athlete
   const handleDeleteAthlete = async (athleteId) => {
-    await deleteAthlete(athleteId);
-    setAthletes(athletes.filter((athlete) => athlete.athlete_id !== athleteId));
+    try {
+      await deleteAthlete(athleteId);
+      setAthletes(athletes.filter((athlete) => athlete.athlete_id !== athleteId));
+    } catch (error) {
+      console.error('Failed to delete athlete', error);
+    }
   };
 
+  // Handle deleting an exercise
   const handleDeleteExercise = async (exerciseId) => {
-    await deleteExercise(exerciseId);
-    setExercises(exercises.filter((exercise) => exercise.id !== exerciseId));
+    try {
+      await deleteExercise(exerciseId);
+      setExercises(exercises.filter((exercise) => exercise.id !== exerciseId));
+    } catch (error) {
+      console.error('Failed to delete exercise', error);
+    }
   };
 
   return (
@@ -61,6 +86,7 @@ const AccountPage = () => {
         </div>
 
         <div className="tab-content">
+          {/* Tab content for personal details */}
           {selectedTab === 'details' && (
             <form className="details-form">
               <h3>Personal Information</h3>
@@ -77,6 +103,7 @@ const AccountPage = () => {
             </form>
           )}
 
+          {/* Tab content for managing athletes */}
           {selectedTab === 'manage' && (
             <div className="manage-athletes-accounts">
               <h3>Manage Athletes</h3>
@@ -87,10 +114,7 @@ const AccountPage = () => {
                       <div>
                         <strong>{athlete.name}</strong> - {athlete.email}
                       </div>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDeleteAthlete(athlete.athlete_id)}
-                      >
+                      <button className="delete-btn" onClick={() => handleDeleteAthlete(athlete.athlete_id)}>
                         Delete
                       </button>
                     </li>
@@ -102,6 +126,7 @@ const AccountPage = () => {
             </div>
           )}
 
+          {/* Tab content for managing exercises */}
           {selectedTab === 'exercises' && (
             <div className="manage-athletes-accounts"> {/* Reused manage-athletes class */}
               <h3>Manage Exercises</h3>
@@ -112,10 +137,7 @@ const AccountPage = () => {
                       <div>
                         <strong>{exercise.name}</strong>
                       </div>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDeleteExercise(exercise.id)}
-                      >
+                      <button className="delete-btn" onClick={() => handleDeleteExercise(exercise.id)}>
                         Delete
                       </button>
                     </li>

@@ -1,83 +1,95 @@
+/* Workout table container styles */
 .workout-table-container {
-    width: 100%; /* Ensures the table takes full width */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: 10px;
-  }
-  
-  .exercise-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-spacing: 0;
-    table-layout: fixed;
-  }
-  
-  .exercise-table th,
-  .exercise-table td {
-    font-size: 16px;
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-  }
-  
-  .exercise-table th {
-    background-color: #F2AE30;
-    color: white;
-    border-bottom: 2px solid #d49b29;
-  }
-  
-  .exercise-table td:last-child,
-  .exercise-table th:last-child {
-    border-right: none;
-  }
-  
-  .number-input {
-    font-size: 14px;
-    width: 100%;
-    border: none;
-    text-align: center;
-    background-color: transparent;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  .number-input:focus {
-    outline: none; /* Removes default focus box */
-    border-bottom: 2px solid #F2AE30; /* Orange underline when focused */
-    background-color: transparent;
-  }
-  
-  .sets-control {
-    display: flex;
-    justify-content: center; /* Center the buttons horizontally */
-    align-items: center;
-    margin-top: 10px;
-    gap: 10px;
-    width: 100%; /* Ensure it spans the width of the table */
-  }
-  
-  .sets-icon {
-    font-size: 20px;
-    cursor: pointer;
-    color: #F2AE30;
-    background-color: transparent;
-    border: none;
-  }
-  
-  .sets-icon:hover {
-    color: #d49b29;
-  }
-  
-  .sets-label {
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 10px; /* Adjust spacing if needed */
-  }
-  
-  .set-icons {
-    display: flex;
-    gap: 10px;
-  }  
+  width: 100%; /* Full width for responsiveness */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 10px; /* Spacing above the table */
+}
+
+/* Table layout and styling */
+.exercise-table {
+  width: 100%; /* Full width table */
+  border-collapse: collapse;
+  background-color: white;
+  border-spacing: 0;
+  table-layout: fixed; /* Prevent column width shifts */
+}
+
+/* Table headers and cells */
+.exercise-table th,
+.exercise-table td {
+  font-size: 16px;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+/* Styling for table headers */
+.exercise-table th {
+  background-color: #F2AE30; /* Header color */
+  color: white;
+  border-bottom: 2px solid #d49b29;
+}
+
+/* Last column border adjustments */
+.exercise-table td:last-child,
+.exercise-table th:last-child {
+  border-right: none; /* Remove right border for the last column */
+}
+
+/* Number input field styling */
+.number-input {
+  font-size: 14px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  background-color: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Focus effect for input fields */
+.number-input:focus {
+  outline: none; /* Remove default focus */
+  border-bottom: 2px solid #F2AE30; /* Custom focus effect */
+  background-color: transparent;
+}
+
+/* Controls for adding/removing sets */
+.sets-control {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px; /* Space between control elements */
+  width: 100%; /* Full width to match table */
+}
+
+/* Icon button styles for set control */
+.sets-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #F2AE30; /* Matches the table header color */
+  background-color: transparent;
+  border: none;
+}
+
+/* Hover effect for set control icons */
+.sets-icon:hover {
+  color: #d49b29; /* Darker hover color */
+}
+
+/* Label for set count */
+.sets-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* Styling for flex layout of set icons */
+.set-icons {
+  display: flex;
+  gap: 10px; /* Space between icons */
+}

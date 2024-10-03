@@ -1,19 +1,21 @@
-/* General layout for chat page */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+/* General layout for the chat page */
 .chat-page {
   display: flex;
   font-family: 'Montserrat', sans-serif;
-  margin-left: 260px; /* Account for the SideBar */
-  margin-top: 80px; /* Account for the NavBar */
-  overflow: hidden; /* Remove scrolling */
+  margin-left: 260px; /* Offset for the sidebar */
+  margin-top: 80px; /* Offset for the navbar */
+  overflow: hidden; /* Prevent scrolling */
 }
 
-/* Chat Container (sidebar and window) */
+/* Chat container for sidebar and chat window */
 .chat-container {
-  display: flex; 
+  display: flex;
   width: 100%;
 }
 
-/* Chat Sidebar */
+/* Sidebar for chat user list */
 .chat-sidebar {
   width: 300px;
   background-color: #f9f9f9;
@@ -28,16 +30,17 @@
 
 .chat-list {
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: auto; /* Scrollable chat list */
 }
 
+/* Individual chat item styling */
 .chat-item {
   padding: 15px;
   margin-bottom: 10px;
   background-color: #f2f2f2;
   border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .chat-item:hover {
@@ -45,30 +48,32 @@
 }
 
 .chat-item.active {
-  background-color: #F2AE30; 
+  background-color: #F2AE30; /* Active chat color */
   color: white;
 }
 
-/* Chat Window */
+/* Main chat window */
 .chat-window {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 30px;
-  background-color: #fff;
+  background-color: white;
   border-radius: 20px;
   height: 90%;
   margin-left: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Chat header with the user's name */
 .chat-header h3 {
-  margin: 20px 20px;
+  margin: 20px 0;
   font-size: 28px;
   color: #333;
 }
 
+/* Container for the chat messages */
 .chat-messages {
   flex-grow: 1;
   overflow-y: auto;
@@ -76,10 +81,11 @@
   margin-bottom: 20px;
 }
 
+/* Styling for individual messages */
 .chat-message {
   margin-bottom: 15px;
   padding: 12px;
-  border-radius: 12px; /* Rounded corners */
+  border-radius: 12px;
   max-width: 60%;
   color: #333;
 }
@@ -87,31 +93,33 @@
 .chat-message.received {
   background-color: #f1f1f1;
   text-align: left;
-  margin-right: auto; /* Align to the left */
+  margin-right: auto;
 }
 
 .chat-message.sent {
   background-color: #F2AE30;
   color: white;
   text-align: right;
-  margin-left: auto; /* Align to the right */
+  margin-left: auto;
 }
 
+/* Input container for the chat */
 .chat-input-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+/* Input field for typing messages */
 .chat-input {
   flex-grow: 1;
-  padding: 8px; 
+  padding: 8px;
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 14px;
-  width: 80%; 
 }
 
+/* Send button styling */
 .send-button {
   padding: 10px 20px;
   background-color: #F2AE30;
@@ -119,7 +127,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .send-button:hover {

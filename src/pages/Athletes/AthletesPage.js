@@ -4,16 +4,21 @@ import AthleteCard from '../../components/athletes/AthleteCard';
 import AthleteForm from '../../components/athletes/AthleteForm';
 import NavBar from '../../components/common/NavBar';
 import SideBar from '../../components/common/SideBar';
-import SearchBox from '../../components/common/SearchBox'; // Import the SearchBox component
+import SearchBox from '../../components/common/SearchBox';
 import './AthletesPage.css';
 
+/**
+ * AthletesPage component - Displays a list of athletes with search and add functionality
+ */
 const AthletesPage = () => {
   const [athletes, setAthletes] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredAthletes, setFilteredAthletes] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  // Custom hook to fetch athletes and manage data.
+  /**
+   * Fetch athletes from the API
+   */
   const getAthletes = async () => {
     try {
       const data = await fetchAthleteDetails();
@@ -24,11 +29,12 @@ const AthletesPage = () => {
     }
   };
 
+  // Fetch athletes on component mount
   useEffect(() => {
     getAthletes();
   }, []);
 
-  // Search athletes by name
+  // Filter athletes based on search query
   useEffect(() => {
     const filtered = athletes.filter((athlete) =>
       athlete.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -36,7 +42,9 @@ const AthletesPage = () => {
     setFilteredAthletes(filtered);
   }, [searchQuery, athletes]);
 
-  // Refresh athlete list after adding a new athlete.
+  /**
+   * Refresh the list of athletes after adding a new athlete
+   */
   const refreshAthletes = async () => {
     await getAthletes();
   };
@@ -45,8 +53,9 @@ const AthletesPage = () => {
     <div className="athletes-page">
       <SideBar />
       <NavBar />
+
+      {/* Header with search box and Add Athlete button */}
       <div className="athletes-header">
-        {/* Use SearchBox instead of inline input */}
         <div className="search-box-wrapper">
           <SearchBox
             searchQuery={searchQuery}
@@ -59,6 +68,7 @@ const AthletesPage = () => {
         </button>
       </div>
 
+      {/* Athlete Form (Visible on Add Athlete button click) */}
       {showForm && (
         <AthleteForm
           onSuccess={() => {
@@ -69,6 +79,7 @@ const AthletesPage = () => {
         />
       )}
 
+      {/* Athlete Grid */}
       <div className="athletes-grid">
         {filteredAthletes.length > 0 ? (
           filteredAthletes.map((athlete) => (

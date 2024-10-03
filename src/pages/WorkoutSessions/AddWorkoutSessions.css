@@ -1,11 +1,13 @@
+/* Main container for the add workout page */
 .add-workout-page {
   display: flex;
   font-family: 'Montserrat', sans-serif;
-  margin-left: 250px;
-  margin-top: 80px;
+  margin-left: 250px; /* Offset for the sidebar */
+  margin-top: 80px; /* Offset for the navbar */
   padding: 20px;
 }
 
+/* Form container for workout session */
 .form-container {
   margin: 0 auto;
   width: 80%;
@@ -13,9 +15,10 @@
   padding: 40px 20px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+/* Link to navigate back to the calendar */
 .back-to-calendar {
   font-size: 18px;
   color: #0e0e0e;
@@ -27,6 +30,7 @@
   margin-bottom: 30px;
 }
 
+/* Date row for displaying the current date and icons */
 .date-row {
   display: flex;
   justify-content: space-between;
@@ -53,30 +57,30 @@
   color: #888888;
 }
 
+/* Styling for the exercise blocks */
 .exercise-block {
   margin-bottom: 40px;
 }
 
+/* Layout for the exercise row */
 .exercise-row {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
+/* Left column for exercise name and instructions */
 .left-column {
   width: 45%;
 }
 
+/* Right column for the workout table */
 .right-column {
-  width: 45%; /* Ensure the right column takes up more space */
+  width: 45%; 
   background-color: transparent;
 }
 
-/* Enhanced Styling for Exercise and Instructions Boxes */
-.exercise-section {
-  margin-bottom: 20px;
-}
-
+/* Styling for the select dropdown and textarea */
 .exercise-select, .exercise-instructions, .new-exercise-input {
   width: 100%;
   padding: 10px;
@@ -92,7 +96,7 @@
   max-width: 100%;
 }
 
-/* New exercise input styling */
+/* New exercise input container styling */
 .new-exercise-input-container {
   display: flex;
   align-items: center;
@@ -107,6 +111,7 @@
   transition: all 0.3s ease;
 }
 
+/* Icons for confirming or cancelling a new exercise */
 .new-exercise-tick, .new-exercise-cross {
   font-size: 18px;
   cursor: pointer;
@@ -114,14 +119,14 @@
 }
 
 .new-exercise-tick:hover {
-  color: #28a745;
+  color: #28a745; /* Green for confirm */
 }
 
 .new-exercise-cross:hover {
-  color: #dc3545;
+  color: #dc3545; /* Red for cancel */
 }
 
-/* Add Exercise Button */
+/* Button for adding a new exercise */
 .add-exercise-button {
   padding: 12px 20px;
   font-family: 'Montserrat', sans-serif;
@@ -141,7 +146,7 @@
   background-color: #d49b29;
 }
 
-/* Delete exercise button */
+/* Styling for the delete exercise button */
 .delete-exercise-button {
   display: flex;
   justify-content: flex-end;
@@ -162,7 +167,7 @@
   background-color: #c82333;
 }
 
-/* Modal styling */
+/* Modal overlay for confirming deletion */
 .modal-overlay-delete {
   position: fixed;
   top: 0;
@@ -184,6 +189,7 @@
   text-align: center;
 }
 
+/* Buttons inside the modal */
 .modal-buttons {
   display: flex;
   justify-content: center;
@@ -210,6 +216,7 @@
   color: white;
 }
 
+/* Hover effects for modal buttons */
 .modal-confirm-btn:hover {
   background-color: #d49b29;
 }

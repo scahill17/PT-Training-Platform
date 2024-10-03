@@ -6,8 +6,24 @@ import AnalyticsIcon from '../../assets/Analytics Icon.png';
 import ChatIcon from '../../assets/Chat Icon.png';
 import './AthleteCard.css';
 
+/**
+ * AthleteCard component displays the details of a specific athlete
+ * and provides navigation to the athlete's calendar, analytics, and chat pages.
+ * 
+ * @param {Object} athlete - The athlete object containing athlete details.
+ * @returns {JSX.Element}
+ */
 const AthleteCard = ({ athlete }) => {
   const navigate = useNavigate();
+
+  /**
+   * Handle navigation to the specified route.
+   * 
+   * @param {string} path - The path to navigate to.
+   */
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="athlete-card">
@@ -36,19 +52,19 @@ const AthleteCard = ({ athlete }) => {
           src={CalendarIcon}
           alt="Calendar"
           className="action-icon"
-          onClick={() => navigate(`/athlete/${athlete.athlete_id}/calendar`)}
+          onClick={() => handleNavigate(`/athlete/${athlete.athlete_id}/calendar`)}
         />
         <img
           src={AnalyticsIcon}
           alt="Analytics"
           className="action-icon"
-          onClick={() => navigate(`/analytics/${athlete.athlete_id}`)}
+          onClick={() => handleNavigate(`/analytics/${athlete.athlete_id}`)}
         />
         <img
           src={ChatIcon}
           alt="Chat"
           className="action-icon"
-          onClick={() => navigate(`/chat/${athlete.athlete_id}`)}
+          onClick={() => handleNavigate(`/chat/${athlete.athlete_id}`)}
         />
       </div>
     </div>
