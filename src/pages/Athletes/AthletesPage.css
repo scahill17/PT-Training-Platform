@@ -12,15 +12,9 @@
   margin-bottom: 50px;
 }
 
-/* Search input styling */
-.search-input {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  width: 300px;
-  flex-grow: 0;
-  flex-shrink: 0;
+.search-box-wrapper {
+  flex-basis: 300px; /* Define the fixed width for the search box */
+  margin-right: 20px; /* Space between the search box and the button */
 }
 
 /* Button for adding an athlete */

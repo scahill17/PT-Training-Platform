@@ -80,17 +80,17 @@
     box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
   }
   
-  .manage-athletes {
+  .manage-athletes-accounts {
     max-width: 700px;
     padding: 20px;
   }
   
-  .athlete-list {
+  .manage-athlete-list {
     list-style: none;
     padding: 30px 10px;
   }
   
-  .athlete-item {
+  .manage-athlete-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -102,7 +102,7 @@
     transition: background-color 0.3s;
   }
   
-  .athlete-item:hover {
+  .manage-athlete-item:hover {
     background-color: #f1f1f1;
   }
   

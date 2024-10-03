@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NavBar from '../../components/common/NavBar';
 import SideBar from '../../components/common/SideBar';
+import SearchBox from '../../components/common/SearchBox'; // Importing the SearchBox component
 import './ChatPage.css';
 
 const ChatPage = () => {
@@ -45,12 +46,10 @@ const ChatPage = () => {
       <div className="chat-container">
         {/* Search and Chat List */}
         <div className="chat-sidebar">
-          <input
-            type="text"
-            placeholder="Search athlete"
-            className="search-user"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+          <SearchBox
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            placeholder="Search user" // Using SearchBox component
           />
           <div className="chat-list">
             {filteredChats.map(chat => (
@@ -73,8 +72,8 @@ const ChatPage = () => {
           <div className="chat-messages">
             {selectedChat.messages.map((message, index) => (
               <div key={index} className={`chat-message ${index % 2 === 0 ? 'received' : 'sent'}`}>
-              {message}
-            </div>
+                {message}
+              </div>
             ))}
             <div ref={messagesEndRef} /> {/* Scroll to this element */}
           </div>

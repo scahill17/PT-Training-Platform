@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../../components/common/NavBar';
 import SideBar from '../../components/common/SideBar';
-import { fetchAthleteDetails, fetchAthletePerformance } from '../../api/api'; // Updated API call
+import { fetchAthleteDetails } from '../../api/api';
 import PerformanceOverview from '../../components/analytics/PerformanceOverview';
+import ExerciseInsights from '../../components/analytics/ExerciseInsights';
+import AthleteList from '../../components/common/AthleteList'; // Import the new AthleteList component
 import './AnalyticsPage.css';
 
 const AnalyticsDashboard = () => {
   const [athletes, setAthletes] = useState([]);
   const [selectedAthlete, setSelectedAthlete] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const { athleteId } = useParams(); // Get athleteId from URL
+  const { athleteId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,17 +31,7 @@ const AnalyticsDashboard = () => {
     };
 
     loadAthletes();
-  }, [athleteId]); // Re-run when athleteId changes
-
-  const handleAthleteSelect = (athlete) => {
-    setSelectedAthlete(athlete);
-    navigate(`/analytics/${athlete.athlete_id}`); // Navigate to the athlete's analytics page
-  };
-
-  // Filter athletes based on search query
-  const filteredAthletes = athletes.filter(athlete =>
-    athlete.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  }, [athleteId]);
 
   return (
     <div className="analytics-dashboard-page">
@@ -49,35 +40,20 @@ const AnalyticsDashboard = () => {
 
       <div className="dashboard-container">
         {/* Athlete List */}
-        <div className="athlete-list">
-          <input
-            type="text"
-            placeholder="Search athlete"
-            className="search-athlete"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <div className="athlete-list-items">
-            {filteredAthletes.map(athlete => (
-              <div
-                key={athlete.id}
-                className={`athlete-item ${selectedAthlete && selectedAthlete.athlete_id === athlete.athlete_id ? 'active' : ''}`}
-                onClick={() => handleAthleteSelect(athlete)}
-              >
-                {athlete.name}
-              </div>
-            ))}
-          </div>
-        </div>
+        <AthleteList
+          athletes={athletes}
+          selectedAthlete={selectedAthlete}
+          setSelectedAthlete={setSelectedAthlete}
+        />
 
         {/* Dashboard Content */}
         <div className="dashboard-content">
           {selectedAthlete ? (
-            <div>
-              <h2>{selectedAthlete.name}'s Performance Overview</h2>
-              {/* Placeholder for performance and exercise insights */}
+            <>
+              <h2>{selectedAthlete.name}'s Analytics</h2>
               <PerformanceOverview athleteId={athleteId} />
-            </div>
+              <ExerciseInsights athleteId={athleteId} />
+            </>
           ) : (
             <h2>Select an Athlete to View Analytics</h2>
           )}

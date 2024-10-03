@@ -59,7 +59,7 @@ const PerformanceOverview = ({ athleteId }) => {
 
   return (
     <div className="performance-overview">
-      <h2>Performance Overview</h2>
+      <h2><strong>Performance Overview</strong></h2>
 
       {/* Calendar component to pick a date */}
       <div className="date-picker-container">
@@ -73,17 +73,16 @@ const PerformanceOverview = ({ athleteId }) => {
 
       {filteredTrend ? (
         <div className="trend-section">
-          <h3>{filteredTrend.trend_type === 'weekly' ? 'Weekly Performance' : 'Monthly Performance'}</h3>
+          <h2>{filteredTrend.trend_type === 'weekly' ? 'Weekly Performance' : 'Monthly Performance'}</h2>
           <div className="trend-data">
-            <p>Total Weight Lifted: {filteredTrend.total_weight} kg</p>
-            <p>Average Weight Per Session: {filteredTrend.average_weight} kg</p>
-            <p>Average Reps Per Session: {filteredTrend.average_reps}</p>
-            <p>Total Workouts: {filteredTrend.total_workouts}</p>
-            <p>Last Updated: {new Date(filteredTrend.last_updated).toLocaleDateString()}</p>
+            <p><strong>Total Weight Lifted:</strong> {filteredTrend.total_weight} kg</p>
+            <p><strong>Average Weight Per Session:</strong> {filteredTrend.average_weight} kg</p>
+            <p><strong>Average Reps Per Session:</strong> {filteredTrend.average_reps}</p>
+            <p><strong>Total Workouts:</strong> {filteredTrend.total_workouts}</p>
           </div>
         </div>
       ) : (
-        <p>No workout trends available within 7 days of the selected date.</p>
+        <p className="no-data">No workout trends available.</p>
       )}
     </div>
   );

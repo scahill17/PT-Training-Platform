@@ -1,0 +1,13 @@
+.search-box-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+}

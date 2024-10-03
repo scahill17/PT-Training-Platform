@@ -166,15 +166,16 @@ export const fetchWorkoutTrends = async (athleteId) => {
   return apiRequest(`workout_trends?athlete_id=eq.${athleteId}`, 'GET');
 };
 
+// Fetch exercise performance for a specific athlete and exercise
+export const fetchExercisePerformance = async (athleteId, exerciseId) => {
+  return apiRequest(`exercise_performance?athlete_id=eq.${athleteId}&exercise_id=eq.${exerciseId}`, 'GET');
+};
+
 
 export const fetchTotalWorkouts = async (athleteId) => {
   return apiRequest(`workout_sessions?athlete_id=eq.${athleteId}`, 'GET');
 };
 
-
-export const fetchExercisePerformance = async (athleteId, exerciseId) => {
-  return apiRequest(`exercise_performance?athlete_id=eq.${athleteId}&exercise_id=eq.${exerciseId}`, 'GET');
-};
 
 export const fetchExerciseConsistency = async (athleteId, exerciseId) => {
   return apiRequest(`exercise_performance?athlete_id=eq.${athleteId}&exercise_id=eq.${exerciseId}`, 'GET');

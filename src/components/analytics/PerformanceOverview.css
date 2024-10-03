@@ -1,47 +1,103 @@
 .performance-overview {
     background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px; /* Slightly more rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-  }
-  
-  .performance-overview h2 {
+    margin-bottom: 20px; /* Ensure separation between components */
+    font-family: 'Montserrat', sans-serif; /* Matching the font */
+}
+
+/* Title styling */
+.performance-overview h2 {
     font-size: 24px;
-    margin-bottom: 15px;
-  }
-  
-  .date-picker-container {
+    margin-bottom: 20px; /* Ensure consistent space around the heading */
+    font-weight: 500;
+    color: #333;
+}
+
+/* Date picker container */
+.date-picker-container {
     margin-bottom: 20px;
-  }
-  
-  .date-picker-container label {
+    display: flex;
+    align-items: center;
+}
+
+.date-picker-container label {
     font-size: 16px;
-    margin-right: 10px;
-  }
-  
-  .react-datepicker-wrapper {
+    margin-right: 15px;
+    color: #333;
+}
+
+/* DatePicker input styling */
+.react-datepicker-wrapper {
     display: inline-block;
     font-size: 16px;
-  }
-  
-  .trend-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-  
-  .trend-section h3 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .trend-data p {
+    width: 100%; /* Ensures full width of the input field */
+}
+
+.react-datepicker__input-container input {
+    border-radius: 8px; /* Consistent rounding */
+    border: 1px solid #ddd;
+    padding: 10px; /* Increase padding for a cleaner look */
+    width: 100%;
     font-size: 16px;
-    margin: 5px 0;
-    color: #555;
-  }
-  
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333; /* Matching text color */
+}
+
+/* Trend section */
+.trend-section {
+  margin-top: 20px;
+  color: #333;
+}
+
+/* Trend data styling */
+.trend-data p {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.no-data {
+  color: #888;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* General DatePicker Container Styling */
+.react-datepicker {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Header (Month and Year) */
+.react-datepicker__header {
+    background-color: #F2AE30;
+    border-bottom: 1px solid #ddd;
+    color: white;
+    border-radius: 8px 8px 0 0; /* Rounded at the top only */
+}
+
+/* Day Cell */
+.react-datepicker__day {
+    color: #333;
+    font-size: 14px;
+}
+
+.react-datepicker__day-name {
+    color: #fff;
+}
+
+/* Selected Day */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+    background-color: #F2AE30;
+    color: white;
+}
+
+

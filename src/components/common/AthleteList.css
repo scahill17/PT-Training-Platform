@@ -1,0 +1,32 @@
+/* Athlete list on the left side */
+.athlete-list {
+    width: 350px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+/* Athlete card styling */
+.athlete-item-card {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.athlete-item-card:hover {
+    background-color: #e6e6e6;
+}
+
+.athlete-item-card.active {
+    background-color: #F2AE30;
+    color: white;
+}

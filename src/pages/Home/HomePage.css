@@ -1,0 +1,90 @@
+/* Full container for the home page */
+.home-page {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 260px; /* Account for the SideBar */
+    margin-top: 80px;   /* Account for the NavBar */
+    height: calc(100vh - 80px); /* Full height minus NavBar height */
+    overflow: hidden; /* Prevent scrolling */
+    width: calc(100% - 260px); /* Account for SideBar width */
+  }
+  
+  /* Main content area */
+  .home-content {
+    flex-grow: 1; /* Allow it to grow and take the full available space */
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title for the home page */
+  .home-content h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Introduction text */
+  .intro-text {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666;
+  }
+  
+  /* Container to hold feature cards - now in two rows */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Two columns */
+    gap: 20px;
+    justify-items: center;
+    align-items: start;
+    row-gap: 20px; /* Vertical gap between rows */
+  }
+  
+  /* Feature card styling */
+  .feature-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Adjust card width */
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Card heading */
+  .feature-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Card description text */
+  .feature-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  /* Button inside the feature card */
+  .feature-card button {
+    background-color: #F2AE30;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .feature-card button:hover {
+    background-color: #d99427;
+  }
+  
+  /* Hover effect for cards */
+  .feature-card:hover {
+    background-color: #f2f2f2;
+  }
+  

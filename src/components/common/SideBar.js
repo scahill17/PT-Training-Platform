@@ -17,7 +17,7 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
-        <NavLink to="/">
+        <NavLink to="/home">
           <img src={ProgressionLogo} alt="Progression Logo" />
         </NavLink>
       </div>

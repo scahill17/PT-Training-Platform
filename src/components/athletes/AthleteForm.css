@@ -1,22 +1,24 @@
 /* Athlete Form Styling */
 .athlete-form {
   font-family: 'Montserrat', sans-serif;
-  max-width: 500px; /* Reduce the max width */
-  padding: 20px; /* Reduce padding to make it less spacious */
+  max-width: 700px; /* Increase max width */
+  padding: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Form Title */
 .athlete-form h2 {
-  font-size: 24px; 
+  font-size: 24px;
   color: #333;
   text-align: left;
-  margin-bottom: 15px; /* Reduce space below the title */
+  margin-bottom: 15px;
 }
 
 /* Input Groups */
@@ -32,7 +34,7 @@
 }
 
 .input-group input {
-  padding: 10px; /* Reduce padding inside the input fields */
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 14px;
@@ -42,19 +44,19 @@
 
 .input-group input:focus {
   border-color: #F2AE30;
-  box-shadow: 0 0 5px rgba(242, 174, 48, 0.5); /* Focus shadow effect */
+  box-shadow: 0 0 5px rgba(242, 174, 48, 0.5);
 }
 
 /* Modal Buttons */
 .modal-buttons {
   display: flex;
-  justify-content: flex-end; /* Align buttons to the right */
+  justify-content: flex-end;
   gap: 10px;
-  margin-top: 15px; /* Less space above the buttons */
+  margin-top: 15px;
 }
 
 .modal-buttons button {
-  padding: 10px 20px; /* Reduce button padding */
+  padding: 10px 20px;
   border-radius: 5px;
   border: none;
   font-family: 'Montserrat', sans-serif;
@@ -97,10 +99,40 @@
   position: fixed;
   top: 120px; /* Push the modal below the NavBar */
   left: 50%;
-  transform: translateX(-50%); /* Center the modal horizontally */
+  transform: translateX(-50%);
   z-index: 2;
-  width: 500px; /* Match the form's width */
-  padding: 30px; /* Less padding to make it more compact */
+  width: 80vw; /* Use viewport width for responsiveness */
+  max-width: 700px; /* Max width for larger screens */
+  max-height: 80vh; /* Limit the modal height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 30px;
   background-color: #fff;
   border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .athlete-form {
+    max-width: 90%;
+  }
+
+  .modal {
+    width: 95vw; /* Make the modal more flexible on smaller screens */
+    max-width: 95%;
+    padding: 20px;
+    top: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .athlete-form {
+    max-width: 100%;
+  }
+
+  .modal {
+    width: 100vw; /* Full width on very small screens */
+    padding: 15px;
+    top: 60px;
+  }
 }

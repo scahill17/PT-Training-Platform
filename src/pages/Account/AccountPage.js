@@ -9,8 +9,8 @@ const AccountPage = () => {
   const [athletes, setAthletes] = useState([]);
   const [exercises, setExercises] = useState([]); // State for exercises
   const userData = {
-    name: 'John Coach',
-    email: 'john.coach@example.com',
+    name: 'Anthony Longhurst',
+    email: 'anthony.longhurst@example.com',
   };
 
   useEffect(() => {
@@ -78,12 +78,12 @@ const AccountPage = () => {
           )}
 
           {selectedTab === 'manage' && (
-            <div className="manage-athletes">
+            <div className="manage-athletes-accounts">
               <h3>Manage Athletes</h3>
-              <ul className="athlete-list">
+              <ul className="manage-athlete-list">
                 {athletes.length > 0 ? (
                   athletes.map((athlete) => (
-                    <li key={athlete.athlete_id} className="athlete-item">
+                    <li key={athlete.athlete_id} className="manage-athlete-item">
                       <div>
                         <strong>{athlete.name}</strong> - {athlete.email}
                       </div>
@@ -103,12 +103,12 @@ const AccountPage = () => {
           )}
 
           {selectedTab === 'exercises' && (
-            <div className="manage-athletes"> {/* Reused manage-athletes class */}
+            <div className="manage-athletes-accounts"> {/* Reused manage-athletes class */}
               <h3>Manage Exercises</h3>
-              <ul className="athlete-list"> {/* Reused athlete-list class */}
+              <ul className="manage-athlete-list"> {/* Reused athlete-list class */}
                 {exercises.length > 0 ? (
                   exercises.map((exercise) => (
-                    <li key={exercise.id} className="athlete-item"> {/* Reused athlete-item class */}
+                    <li key={exercise.id} className="manage-athlete-item"> {/* Reused athlete-item class */}
                       <div>
                         <strong>{exercise.name}</strong>
                       </div>
