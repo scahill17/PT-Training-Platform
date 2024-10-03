@@ -12,9 +12,7 @@ const NavBar = () => {
   const getWelcomeMessage = () => {
     const path = location.pathname;
   
-    if (path === '/') {
-      return 'Welcome back, Coach';
-    } else if (path.startsWith('/athletes') || path.startsWith('/athlete/')) {
+    if (path.startsWith('/athletes') || path.startsWith('/athlete/')) {
       return 'My Athletes';
     } else if (path.startsWith('/analytics')) {
       return 'Analytics';
@@ -34,8 +32,6 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-
-
       <div className="navbar-text">
         {getWelcomeMessage()}
       </div>

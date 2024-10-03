@@ -4,23 +4,26 @@
   margin-top: 80px;
 }
 
+/* Header container for search and button */
 .athletes-header {
   display: flex;
-  justify-content: space-between; /* Space the search input and button */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
 }
 
+/* Search input styling */
 .search-input {
   padding: 10px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 300px; /* Fixed width to control the input size */
-  flex-grow: 0; /* Prevent the search bar from growing */
-  flex-shrink: 0; /* Prevent the search bar from shrinking */
+  width: 300px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
+/* Button for adding an athlete */
 .add-athlete-button {
   padding: 12px 36px;
   font-family: 'Montserrat', sans-serif;
@@ -32,14 +35,15 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   white-space: nowrap;
-  margin-left: 20px; /* Ensure there is space between search input and button */
-  flex-shrink: 0; /* Prevent the button from shrinking */
+  margin-left: 20px;
+  flex-shrink: 0;
 }
 
 .add-athlete-button:hover {
   background-color: #d49b29;
 }
 
+/* Grid layout for athlete cards */
 .athletes-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -47,6 +51,7 @@
   justify-items: stretch;
 }
 
+/* Message for no athletes found */
 .no-athletes-message {
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;

@@ -11,6 +11,7 @@ import ChatPage from './pages/Chat/ChatPage';
 import './App.css';
 import AddWorkoutSessionsPage from './pages/WorkoutSessions/AddWorkoutSessions';
 import ViewWorkoutPage from './pages/WorkoutSessions/ViewWorkoutPage';
+import NotFoundPage from './pages/Error/ErrorPage';
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/athlete/:athleteID/calendar/:day/:month/:year" element={<AddWorkoutSessionsPage />} />
                 <Route path="/athlete/:athleteID/calendar/:day/:month/:year/view" element={<ViewWorkoutPage />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
           </div>
         </div>

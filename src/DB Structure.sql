@@ -1,89 +1,99 @@
-/* ------------------------------- HEADER -------------------------------- */
-/* This file only exists to view the framework of the database thorugh SQL */
-
+-- Table for users (coaches and clients)
 CREATE TABLE api.users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     role VARCHAR(50) NOT NULL CHECK (role IN ('coach', 'client')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Table for athletes (clients)
 CREATE TABLE api.athletes (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES api.users(id) ON DELETE CASCADE,
-    age INT CHECK (age >= 0),
+    user_id INTEGER UNIQUE NOT NULL REFERENCES api.users(id) ON DELETE CASCADE,
+    age INTEGER CHECK (age >= 0),
     fitness_goals VARCHAR(255),
-    medical_conditions VARCHAR(255),
-    UNIQUE (user_id)
+    medical_conditions VARCHAR(255)
 );
 
+-- View to retrieve athlete details
+CREATE VIEW api.athlete_details AS
+SELECT
+    u.id AS user_id,
+    u.name,
+    u.email,
+    u.role,
+    u.created_at,
+    a.id AS athlete_id,
+    a.age,
+    a.fitness_goals,
+    a.medical_conditions
+FROM api.users u
+JOIN api.athletes a ON u.id = a.user_id;
+
+-- Table for workout sessions
 CREATE TABLE api.workout_sessions (
     id SERIAL PRIMARY KEY,
-    client_id INT REFERENCES api.clients(id) ON DELETE CASCADE,
-    session_date DATE NOT NULL,
-    total_weight_lifted INT DEFAULT 0,
-    readiness_score INT CHECK (readiness_score >= 0 AND readiness_score <= 10),
-    session_duration INT NOT NULL, -- Duration in minutes
-    intensity INT CHECK (intensity >= 1 AND intensity <= 10)
+    athlete_id INTEGER NOT NULL REFERENCES api.athletes(id) ON DELETE CASCADE,
+    date DATE NOT NULL,
+    CONSTRAINT unique_athlete_workout_date UNIQUE (athlete_id, date)
 );
 
-CREATE TABLE api.exercises (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    media_url VARCHAR(255)
-);
-
+-- Table for workout details (exercises in a session)
 CREATE TABLE api.workout_details (
     id SERIAL PRIMARY KEY,
-    workout_session_id INT REFERENCES api.workout_sessions(id) ON DELETE CASCADE,
-    exercise_id INT REFERENCES api.exercises(id) ON DELETE CASCADE,
-    sets INT NOT NULL CHECK (sets >= 1),
-    reps INT NOT NULL CHECK (reps >= 1),
-    weight INT NOT NULL CHECK (weight >= 0)
+    workout_session_id INTEGER NOT NULL REFERENCES api.workout_sessions(id) ON DELETE CASCADE,
+    exercise_id INTEGER NOT NULL REFERENCES api.exercises(id) ON DELETE CASCADE,
+    instructions TEXT,
+    exercise_name TEXT,
+    -- Trigger to auto-set the exercise_name before insert/update
+    CONSTRAINT fk_workout_session FOREIGN KEY (workout_session_id) REFERENCES api.workout_sessions(id) ON DELETE CASCADE
 );
 
-CREATE TABLE api.client_analytics (
+-- Trigger function to auto-fill exercise_name in workout details
+CREATE OR REPLACE FUNCTION update_exercise_name()
+RETURNS TRIGGER AS $$
+BEGIN
+    SELECT name INTO NEW.exercise_name FROM api.exercises WHERE id = NEW.exercise_id;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to automatically set the exercise name in workout_details
+CREATE TRIGGER set_exercise_name
+BEFORE INSERT OR UPDATE ON api.workout_details
+FOR EACH ROW EXECUTE FUNCTION update_exercise_name();
+
+-- Table for workout sets (sets within an exercise)
+CREATE TABLE api.workout_sets (
     id SERIAL PRIMARY KEY,
-    client_id INT REFERENCES api.clients(id) ON DELETE CASCADE,
-    analytics_date DATE NOT NULL,
-    readiness_score INT CHECK (readiness_score >= 0 AND readiness_score <= 10),
-    volume_lifted INT CHECK (volume_lifted >= 0)
+    workout_detail_id INTEGER NOT NULL REFERENCES api.workout_details(id) ON DELETE CASCADE,
+    set_number INTEGER NOT NULL,
+    reps INTEGER NOT NULL,
+    weight NUMERIC(5, 2) NOT NULL,
+    CONSTRAINT workout_detail_fk FOREIGN KEY (workout_detail_id) REFERENCES api.workout_details(id) ON DELETE CASCADE
 );
 
+-- Table for tracking athlete performance
+CREATE TABLE api.exercise_performance (
+    id SERIAL PRIMARY KEY,
+    athlete_id INTEGER NOT NULL REFERENCES api.athletes(id) ON DELETE CASCADE,
+    exercise_id INTEGER NOT NULL REFERENCES api.exercises(id) ON DELETE CASCADE,
+    total_sessions INTEGER DEFAULT 0,   -- Total number of sessions with this exercise
+    average_weight NUMERIC(10, 2) DEFAULT 0,  -- Average weight lifted across sessions
+    average_reps NUMERIC(10, 2) DEFAULT 0,  -- Average reps performed across sessions
+    personal_best_weight NUMERIC(10, 2),  -- Highest weight lifted for this exercise
+    personal_best_reps INTEGER  -- Highest reps performed for this exercise
+);
 
--- Base Insertions
-INSERT INTO api.users (name, email, role)
-VALUES 
-('John Coach', 'john.coach@example.com', 'coach'),
-('Emily Coach', 'emily.coach@example.com', 'coach'),
-('Mark Client', 'mark.client@example.com', 'client'),
-('Lucy Client', 'lucy.client@example.com', 'client');
-
-INSERT INTO api.clients (user_id, age, fitness_goals, medical_conditions)
-VALUES 
-(3, 30, 'Build muscle', 'None'),
-(4, 28, 'Lose weight', 'Asthma');
-
-INSERT INTO api.exercises (name, media_url)
-VALUES 
-('Squat', 'http://example.com/squat-video'),
-('Bench Press', 'http://example.com/benchpress-video'),
-('Deadlift', 'http://example.com/deadlift-video');
-
-INSERT INTO api.workout_sessions (client_id, session_date, total_weight_lifted, readiness_score, session_duration, intensity)
-VALUES 
-(1, '2024-09-01', 500, 8, 60, 7),  -- Mark's session
-(2, '2024-09-02', 300, 7, 45, 6);  -- Lucy's session
-
-INSERT INTO api.workout_details (workout_session_id, exercise_id, sets, reps, weight)
-VALUES 
-(1, 1, 3, 10, 100),  -- Mark's session includes squats
-(1, 2, 3, 8, 80),    -- Mark also did bench presses
-(2, 2, 3, 12, 60),   -- Lucy's session includes bench presses
-(2, 3, 4, 6, 120);   -- Lucy did deadlifts
-
-INSERT INTO api.client_analytics (client_id, analytics_date, readiness_score, volume_lifted)
-VALUES 
-(1, '2024-09-01', 8, 500),  -- Mark's readiness and total weight lifted
-(2, '2024-09-02', 7, 300);  -- Lucy's readiness and total weight lifted
+CREATE TABLE api.workout_trends (
+    id SERIAL PRIMARY KEY,
+    athlete_id INTEGER NOT NULL REFERENCES api.athletes(id) ON DELETE CASCADE,
+    trend_type VARCHAR(50) NOT NULL CHECK (trend_type IN ('weekly', 'monthly')),  -- Weekly or monthly trend
+    trend_period DATE NOT NULL,  -- Start date of the trend period
+    total_weight NUMERIC(10, 2),  -- Total weight lifted in the period
+    average_weight NUMERIC(10, 2),  -- Average weight lifted per session in the period
+    average_reps NUMERIC(10, 2),  -- Average reps per session in the period
+    total_workouts INTEGER,  -- Total number of workouts in the period
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -155,3 +155,29 @@ export const fetchWorkoutSessionDetails = async (athleteId, date) => {
 
   return { id: sessionId, exercises };
 };
+
+
+/* ----------------- API CALLS FOR ANALYTICS -------------------------- */
+export const fetchTotalWorkouts = async (athleteId) => {
+  return apiRequest(`workout_sessions?athlete_id=eq.${athleteId}`, 'GET');
+};
+
+export const fetchWorkoutTrends = async (athleteId, trendType = 'monthly') => {
+  return apiRequest(`workout_trends?athlete_id=eq.${athleteId}&trend_type=eq.${trendType}&order=trend_period.desc`, 'GET');
+};
+
+export const fetchExercisePerformance = async (athleteId, exerciseId) => {
+  return apiRequest(`exercise_performance?athlete_id=eq.${athleteId}&exercise_id=eq.${exerciseId}`, 'GET');
+};
+
+export const fetchExerciseConsistency = async (athleteId, exerciseId) => {
+  return apiRequest(`exercise_performance?athlete_id=eq.${athleteId}&exercise_id=eq.${exerciseId}`, 'GET');
+};
+
+export const fetchExerciseProgress = async (athleteId, exerciseId) => {
+  return apiRequest(`workout_details?athlete_id=eq.${athleteId}&exercise_id=eq.${exerciseId}&order=workout_session_id.asc`, 'GET');
+};
+
+export const fetchTotalWeightLifted = async (athleteId) => {
+  return apiRequest(`athlete_total_weight?athlete_id=eq.${athleteId}`, 'GET');
+};
