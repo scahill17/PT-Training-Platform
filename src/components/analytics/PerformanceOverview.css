@@ -1,0 +1,47 @@
+.performance-overview {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .performance-overview h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .date-picker-container {
+    margin-bottom: 20px;
+  }
+  
+  .date-picker-container label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .react-datepicker-wrapper {
+    display: inline-block;
+    font-size: 16px;
+  }
+  
+  .trend-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .trend-section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .trend-data p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+  }
+  

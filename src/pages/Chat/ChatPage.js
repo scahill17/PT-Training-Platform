@@ -47,7 +47,7 @@ const ChatPage = () => {
         <div className="chat-sidebar">
           <input
             type="text"
-            placeholder="Search user"
+            placeholder="Search athlete"
             className="search-user"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

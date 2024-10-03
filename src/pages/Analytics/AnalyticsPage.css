@@ -1,0 +1,89 @@
+/* Full container for the analytics dashboard page */
+.analytics-dashboard-page {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 260px; /* Account for the SideBar */
+    margin-top: 80px; /* Account for the NavBar */
+    height: calc(100vh - 80px); /* Full height minus NavBar height */
+    overflow: hidden; /* Remove scrolling */
+  }
+  
+/* Main container that holds both the athlete list and dashboard */
+.dashboard-container {
+    display: flex;
+    width: calc(100% - 260px); /* Account for sidebar */
+    height: calc(100vh - 80px); /* Full height minus NavBar */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+/* Athlete list on the left side - wider than before */
+.athlete-list {
+    width: 350px; /* Increased width */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+
+/* Search bar at the top of the athlete list */
+.search-athlete {
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px; /* Increased margin for more spacing */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+.athlete-item-card {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+  }
+
+.athlete-item-card:hover {
+    background-color: #e6e6e6;
+}
+
+.athlete-item-card.active {
+    background-color: #F2AE30; 
+    color: white;
+}
+
+/* Message when no athletes are found */
+.no-athletes-text {
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Dashboard content aligned to the top */
+.dashboard-content {
+    flex-grow: 1;
+    background-color: #ffffff;
+    margin-left: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title within the dashboard */
+.dashboard-content h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}

@@ -2,7 +2,7 @@
 .chat-page {
     display: flex;
     font-family: 'Montserrat', sans-serif;
-    margin-left: 250px; /* Account for the SideBar */
+    margin-left: 260px; /* Account for the SideBar */
     margin-top: 80px; /* Account for the NavBar */
     height: calc(100vh - 80px); /* Full height minus NavBar height */
     overflow: hidden; /* Remove scrolling */
@@ -29,7 +29,7 @@
   .search-user {
     padding: 15px;
     font-size: 14px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #ddd;
     margin-bottom: 20px;
     width: 100%;
